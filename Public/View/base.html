@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>论坛</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="keywords" content="关键词">
+		<meta name="description" content="页面描述">
+		<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/global.css">
+		<block name="styles"></block>
+		<script src="__PUBLIC__/jquery-2.1.0.js"></script>
+		
+	</head>
+
+	<body>
+		<block name="header"></block>
+		<block name="main"></block>
+		<block name="footer"></block>
+		<script src="__PUBLIC__/layui/layui.js"></script>
+		<script>
+			layui.config({
+				version: "2.0.0",
+				base: '__PUBLIC__/mods/'
+			}).extend({
+				fly: 'index'
+			}).use('fly');
+		</script>
+		<block name="scripts"></block>
+	</body>
+
+</html>

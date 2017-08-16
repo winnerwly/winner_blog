@@ -1,0 +1,36 @@
+[ 2017-07-23T10:55:14+08:00 ] 127.0.0.1 /index.php/res/images/avatar/00.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Res
+
+[ 2017-07-23T10:55:14+08:00 ] 127.0.0.1 /index.php/res/images/avatar/default.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Res
+
+[ 2017-07-23T10:55:42+08:00 ] 127.0.0.1 /index.php/res/images/fly.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Res
+
+[ 2017-07-23T10:55:42+08:00 ] 127.0.0.1 /index.php/res/images/avatar/default.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Res
+
+[ 2017-07-23T11:13:53+08:00 ] 127.0.0.1 /index.php/res/images/fly.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Res
+
+[ 2017-07-23T11:13:53+08:00 ] 127.0.0.1 /index.php/res/images/avatar/default.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Res
+
