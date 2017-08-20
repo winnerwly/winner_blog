@@ -15,6 +15,64 @@
 
 	<body>
 		
+	<div class="header">
+  <div class="main">
+    <a class="logo" href="/index.php" title="Fly">Fly社区</a>
+    <div class="nav">
+      <a class="nav-this" href="/index.php/Question">
+        <i class="iconfont icon-wenda"></i>问答
+      </a>
+      <a href="#" target="_blank">
+        <i class="iconfont icon-ui"></i>框架
+      </a>
+    </div>
+    
+    <div class="nav-user">
+     <?php if(empty($name)): ?><!-- 未登入状态 -->
+	      <a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>
+	      <span><a href="/index.php/User/Index/login">登入</a><a href="/index.php/User/Index/reg">注册</a></span>
+	      <p class="out-login">
+	        <a href="#" class="iconfont icon-qq" title="QQ登入"></a>
+	        <a href="#" class="iconfont icon-weibo" title="微博登入"></a>
+	      </p><?php endif; ?>
+      
+      <?php if(!empty($name)): ?><!-- 登入后的状态 -->
+      <a class="avatar" href="#">
+        <img src="<?php echo (cookie('user_image')); ?>">
+        <cite><?php echo (cookie('user_name')); ?></cite>
+        <i>VIP2</i>
+      </a>
+      <div class="nav">
+        <a href="#"><i class="iconfont icon-shezhi"></i>设置</a>
+        <a href="/index.php/User/Index/logout">
+        	<i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了
+        </a>
+      </div><?php endif; ?>
+    </div>
+  </div>
+</div>
+
+
+
+		
+	<div class="fly-home" style="background-image: url();">
+  <img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0" alt="{{info.username}}">
+  <h1>
+    贤心
+    <i class="iconfont icon-nan"></i> 
+    <!-- <i class="iconfont icon-nv"></i> -->
+    
+    <!-- <span style="color:#c00;">（超级码农）</span>
+    <span style="color:#5FB878;">（活雷锋）</span>
+    <span>（该号已被封）</span> -->
+  </h1>
+  <p class="fly-home-info">
+    <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span>
+    <i class="iconfont icon-shijian"></i><span>2015-06-17 加入</span>
+    <i class="iconfont icon-chengshi"></i><span>来自杭州</span>
+  </p>
+  <p class="fly-home-sign">（人生仿若一场修行）</p>
+</div>
 <div class="main fly-home-main">
   <div class="layui-inline fly-home-jie">
     <div class="fly-panel">
@@ -93,7 +151,8 @@ full: true
   </div>
 
 </div>
-<block name="footer">
+
+		
 	<div class="footer">
 	<p>
 		<a href="#">Fly社区</a> 2017 &copy;
@@ -106,8 +165,6 @@ full: true
 	</p>
 </div>
 
-		
-		
 		<script src="/Public/layui/layui.js"></script>
 		<script>
 			layui.config({

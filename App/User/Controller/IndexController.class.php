@@ -27,9 +27,9 @@ class IndexController extends Controller {
     		$map["user_pwd"] = md5($_POST["pass"]);
     		$code = $_POST["vercode"];
     		// 验证码
-//  		if(!$this->verifyCheck($code)){
-//  			$this->error("验证码错误！");
-//  		}
+    		if(!$this->verifyCheck($code)){
+    			$this->error("验证码错误！");
+    		}
     		
     		$res = M("user")->where($map)->field("id,user_name,user_image")->find();
     		if($res==null){
@@ -57,7 +57,15 @@ class IndexController extends Controller {
     
     // 主页
     public function home(){
-    	$this->before();
+    	$uid = $_GET["u"];
+    	/**
+    	 * 所有的提问
+    	 * **/
+    	$res = M("question")->where("question_uid=".$uid)->getField("id,question_title,question_view,question_comment");
+    	dump($res);
+    	/**
+    	 * 所有的回答
+    	 * **/
     	$this->display();
     }
     
@@ -107,12 +115,13 @@ class IndexController extends Controller {
     		
     		// 将获取的数据写入数据库
     		$data["user_reg_time"] = time();
+    		$data["user_image"] = "/Public/images/avatar/".rand(0,11).".jpg";
     		$data['user_pwd'] = md5($data['user_pwd']);
     		$uid = M("user")->add($data);
     		
     		if($uid>0){
     			cookie("user_name",$data["user_name"]);
-    			cookie("user_image","/Public/images/avatar/default.png");
+    			cookie("user_image",$data["user_image"]);
     			session("uid",$uid);
     			$this->success("注册成功！！","Index/index");
     		}else{
@@ -146,6 +155,6 @@ class IndexController extends Controller {
     	cookie("user_name",null);
     	cookie("user_image",null);
     	session("uid",null);
-    	$this->success("退出成功！","/index.php/User/Index/login");
+    	$this->success("退出成功！","/index.php");
     }
 }

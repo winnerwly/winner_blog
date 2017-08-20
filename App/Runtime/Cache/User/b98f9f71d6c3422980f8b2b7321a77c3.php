@@ -19,7 +19,7 @@
   <div class="main">
     <a class="logo" href="#" title="Fly">Fly社区</a>
     <div class="nav">
-      <a class="nav-this" href="/index.php/Question/index">
+      <a class="nav-this" href="#">
         <i class="iconfont icon-wenda"></i>问答
       </a>
       <a href="#" target="_blank">
@@ -217,14 +217,22 @@
 	</p>
 </div>
 
-		<script src="/Public/layui/layui.js"></script>
+	<!--	<script src="/Public/layui/layui.js"></script>-->
 		<script>
-			layui.config({
-				version: "2.0.0",
-				base: '/Public/mods/'
-			}).extend({
-				fly: 'index'
-			}).use('fly');
+//			layui.cache.page = '';
+//			layui.cache.user = {
+//				username: '游客',
+//				uid: -1,
+//				avatar: '../res/images/avatar/00.jpg',
+//				experience: 83,
+//				sex: '男'
+//			};
+//			layui.config({
+//				version: "2.0.0",
+//				base: '/Public/mods/'
+//			}).extend({
+//				fly: 'index'
+//			}).use('fly');
 		</script>
 		
 	</body>

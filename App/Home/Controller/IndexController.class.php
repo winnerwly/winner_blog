@@ -1,75 +1,41 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+use Think\Page;
+use Org\Util\Date;
 class IndexController extends Controller {
-    
-    /***
-     * /入口文件/模块名/控制器名/方法名
-     * **/
-    
+   	/***
+   	 * 
+   	 * $sql = "SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12";
+   	 * 
+   	 * ***/
     public function index(){
-    	// CURD   增删改查
-    	/**
-    	 * M("表名") 选择需要操作的表
-    	 * where()  设定操作条件
-    	 * field()  设定需要查找的字段
-    	 * select() 执行查找
-    	 * order()  排序  desc 降序  asc 升序
-    	 * find()   只取一条记录
-    	 * limit()  一个数字n：取n条数据出来   两个数字  n,m 从 n 开始取出 m条数据
-    	 * add($data) 插入数据，返回的是自增id
-    	 * save($data) 修改  返回的是被调修条数
-    	 * setField()  修改某一个字段的操作
-    	 * getField()  获取某一个字段（ limit 1 只有一条数据 ）
-    	 * delete()    删除数据记录
-    	 * 
-    	 * select * from think_user  where 1=1 
-    	 * INSERT INTO `think_user` (`user_name`,`user_pwd`,`user_email`,`user_image`,`user_reg_time`) VALUES ('admin123','0192023a7bbd73250516f069df18b500','niyinlong@125.com','/Public/1.jpg','1500792607')
-    	 * UPDATE `think_user` SET `user_reg_time`='1500793917' WHERE ( 1 )
-    	 * UPDATE `think_user` SET `user_status`='1'
-    	 * DELETE FROM `think_user` WHERE ( id>6 )
-    	 * 
-    	 * */
-//  	$map["user_name"] = "niyinlong";
-//  	$map["user_pwd"] =  md5('123456');
-//  	$result = M("user")
-//  			  ->where('1')
-//  			  ->field("id,user_name")
-//  			  ->order("id asc")
-//  			  ->limit(1,6)
-//  			  ->select();
-//  	// 1.利用查找  验证用户名与密码是否正确怎么做？		  
-//  	dump($result);
-//  	$res = M("user")->where($map)
-//  					->field("id,user_name,user_image")
-//  					->find();
-//  	dump($res);
-//  	
-//  	//增加
-//  	$data["user_name"] = "admin123";
-//  	$data["user_pwd"] = md5($data["user_name"]);
-//  	$data["user_email"] = "niyinlong@125.com";
-//  	$data["user_image"] = "/Public/1.jpg";
-//  	$data["user_reg_time"] = time();
-//  	
-//  	//$res = M("user")->add($data);
-//  	dump(M("user")->getLastSql());
-//  	dump($res);
-//  	// 2. 注册怎么写？ 注册前，检查用户名、邮箱是否存在
-//  	
-//  	// 更新
-//  	$A["user_reg_time"] = time();
-//  	//$res = M("user")->where("1")->save($A);  
-//  	$res = M("user")->where("1")->getField("user_name");  	
-//  	dump(M("user")->getLastSql());
-//  	dump($res);
-//  	
-//  	// 删除
-//  	
-//  	$res = M("user")->where("id>6")->delete();
-//  	dump(M("user")->getLastSql());
-//  	dump($res);
-   		$this->display();
+    	$this->assign("name",cookie("user_name"));
+    	$status = $_GET["status"];
+    	$where = "1";
+    	if($status==""||$status<0){
+    		$status = -1;
+    	}else{
+    		$where = " question_status = ".$status." ";
+    	}
+    	$count = M("question")->where($where)->count();
+    	$Page = new page($count,15);
+    	$show = $Page->show();
+    	$sql = "select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where ".$where." order by q.question_time desc limit ".$Page->firstRow.",".$Page->listRows;
+    	$res = M()->query($sql);
+    	$tool = new Date();
+    	for($i = 0;$i<count($res);$i++)
+    		$res[$i]["question_time"] = $tool->translate($res[$i]["question_time"]);
+    	$hot = $this->getHot();
+    	$hotComment = $this->getHotComment();
+    	$beastUser = $this->getBeastUser();
+    	$this->assign("question",$res);
+    	$this->assign("show",$show);
+    	$this->assign("status",$status);
+    	$this->assign("hot",$hot);
+     	$this->assign("hotComment",$hotComment);
+     	$this->assign("beastUser",$beastUser);
+    	$this->display();
     }
     
     public function notFound(){
@@ -78,5 +44,48 @@ class IndexController extends Controller {
     
     public function tips(){
     	$this->display();
+    }
+    
+    
+    public function search(){
+    	
+    	if(IS_GET){
+	    	$keyWord = $_GET["key"];
+	    	$status = $_GET["status"];
+	    	$where = "1";
+	    	if($status==""||$status<0){
+	    		$status = -1;
+	    	}else{
+	    		$where = " question_status = ".$status." ";
+	    	}
+	    	
+	    	$count = M("question")->where($where)->count();
+	    	$Page = new page($count,15);
+	    	$show = $Page->show();
+	    	$sql = "select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where q.question_title like '%".$keyWord."%'  order by q.question_time desc limit ".$Page->firstRow.",".$Page->listRows;
+	    	$res = M()->query($sql);
+	    	$tool = new Date();
+	    	for($i = 0;$i<count($res);$i++)
+	    		$res[$i]["question_time"] = $tool->translate($res[$i]["question_time"]);
+	    	$this->assign("question",$res);
+	    	$this->assign("show",$show);
+	    	$this->assign("keyWord",$keyWord);
+	    	$this->assign("status",$status);
+	   		$this->display();
+    	}
+    }
+    
+    private function getBeastUser(){
+    	$sql = "SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12";
+    	return M()->query($sql);
+    }
+    
+    private function getHot(){
+    	$res = M("question")->where("1")->field("id,question_title,question_view")->order("question_view desc")->limit("8")->select();
+   		return $res;
+    }
+    private function getHotComment(){
+    	$res = M("question")->where("1")->field("id,question_title,question_comment")->order("question_comment desc")->limit("8")->select();
+   		return $res;
     }
 }

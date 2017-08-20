@@ -58,32 +58,24 @@
 
 	<div class="main layui-clear">
 		<div class="wrap">
-			<div class="content">
-				<div class="fly-tab fly-tab-index">
-					<!--<span>
-		          <a href="jie/index.html">全部</a>
-		          <a href="jie/index.html">未结帖</a>
-		          <a href="jie/index.html">已采纳</a>
-		          <a href="jie/index.html">精帖</a>
-		          <a href="user/index.html">我的帖</a>
-		        </span>-->
-        
-        		<span>
+			<div class="content" style="margin-right:0">
+				<div class="fly-tab">
+					<span>
 						<?php if(($status == -1)): ?><a href="/index.php/Home/Index"  class="tab-this" >全部</a>
 			          	<?php else: ?>
 			          		<a href="/index.php/Home/Index"  >全部</a><?php endif; ?> 
 			          	
-			          	<?php if(($status == 0)): ?><a href="/index.php/Home/Index?status=0" class="tab-this" >未结帖</a>
+			          	<?php if(($status == 0)): ?><a href="/index.php/Home/Index?status=0&key=<?php echo ($keyWord); ?>" class="tab-this" >未结帖</a>
 			          	<?php else: ?>
-			          		<a href="/index.php/Home/Index?status=0" >未结帖</a><?php endif; ?> 
+			          		<a href="/index.php/Home/Index?status=0&key=<?php echo ($keyWord); ?>" >未结帖</a><?php endif; ?> 
 			          	
-			          	<?php if(($status == 1)): ?><a href="/index.php/Home/Index?status=1" class="tab-this" >已采纳</a>
+			          	<?php if(($status == 1)): ?><a href="/index.php/Home/Index?status=1&key=<?php echo ($keyWord); ?>" class="tab-this" >已采纳</a>
 			          	<?php else: ?>
-			          		 <a href="/index.php/Home/Index?status=1" >已采纳</a><?php endif; ?> 
+			          		 <a href="/index.php/Home/Index?status=1&key=<?php echo ($keyWord); ?>" >已采纳</a><?php endif; ?> 
 			          	
-			          	<?php if(($status == 2)): ?><a href="/index.php/Home/Index?status=2" class="tab-this" >精帖</a>
+			          	<?php if(($status == 2)): ?><a href="/index.php/Home/Index?status=2&key=<?php echo ($keyWord); ?>" class="tab-this" >精帖</a>
 			          	<?php else: ?>
-			          		<a href="/index.php/Home/Index?status=2" >精帖</a><?php endif; ?> 
+			          		<a href="/index.php/Home/Index?status=2&key=<?php echo ($keyWord); ?>" >精帖</a><?php endif; ?> 
 			          <a href="../user/index.html" >我的帖</a>
 			        </span>
 					<form action="/index.php/Home/Index/search" method="get" class="fly-search">
@@ -93,13 +85,14 @@
 					<a href="/index.php/Question/Index/add" class="layui-btn jie-add">发布问题</a>
 				</div>
 
-				<ul class="fly-list fly-list-top">
+				<ul class="fly-list">
+					
 					<?php if(is_array($question)): $i = 0; $__LIST__ = $question;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="fly-list-li">
 							<a href="user/home.html" class="fly-list-avatar">
 								<img src="<?php echo ($vo["user_image"]); ?>" alt="">
 							</a>
 							<h2 class="fly-tip">
-					            <a href="/index.php/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
+					            <a href="/index.php/Question/Index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
 					             <?php if(($vo["s"] == 1)): ?><span class="fly-tip-stick">已解决</span>
 									<?php elseif($vo["s"] == 2): ?>
 										<span class="fly-tip-stick">已解决</span>
@@ -116,58 +109,12 @@
 							</p>
 						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
+				<!-- <div class="fly-none">并无相关数据</div> -->
 				<div style="text-align: center">
 						<?php echo ($show); ?>
 				</div>
 
 			</div>
-		</div>
-
-		<div class="edge">
-			<div class="fly-panel leifeng-rank">
-				<h3 class="fly-panel-title">近一月回答榜 - TOP 12</h3>
-				<dl>
-					<?php if(is_array($beastUser)): $i = 0; $__LIST__ = $beastUser;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-							<a href="/index.php/User/Index/home?u=<?php echo ($vo["id"]); ?>">
-								<img src="<?php echo ($vo["user_image"]); ?>">
-								<cite><?php echo ($vo["user_name"]); ?></cite>
-								<i><?php echo ($vo["c"]); ?>次回答</i>
-							</a>
-						</dd><?php endforeach; endif; else: echo "" ;endif; ?>
-				</dl>
-			</div>
-
-			<dl class="fly-panel fly-list-one">
-				<dt class="fly-panel-title">最近热帖</dt>
-				<?php if(is_array($hot)): $i = 0; $__LIST__ = $hot;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-					<a href="/index.php/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
-					<span><i class="iconfont">&#xe60b;</i><?php echo ($vo["question_view"]); ?></span>
-				</dd><?php endforeach; endif; else: echo "" ;endif; ?>
-			</dl>
-
-			<dl class="fly-panel fly-list-one">
-				<dt class="fly-panel-title">近期热议</dt>
-				<?php if(is_array($hotComment)): $i = 0; $__LIST__ = $hotComment;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-					<a href="/index.php/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
-					<span><i class="iconfont">&#xe60c;</i><?php echo ($vo["question_comment"]); ?></span>
-				</dd><?php endforeach; endif; else: echo "" ;endif; ?>
-			</dl>
-
-			<div class="fly-panel fly-link">
-				<h3 class="fly-panel-title">友情链接</h3>
-				<dl>
-					<dd>
-						<a href="http://www.layui.com/" target="_blank">layui</a>
-					</dd>
-					<dd>
-						<a href="http://layim.layui.com/" target="_blank">LayIM</a>
-					</dd>
-					<dd>
-						<a href="http://layer.layui.com/" target="_blank">layer</a>
-					</dd>
-				</dl>
-			</div>
-
 		</div>
 	</div>
 

@@ -292,7 +292,7 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
     if(val.replace(/\s/g, '') === ''){
       return false;
     }
-    input.val('site:layui.com '+ input.val());
+    input.val(input.val());
   });
   $('.icon-sousuo').on('click', function(){
     $('.fly-search').submit();

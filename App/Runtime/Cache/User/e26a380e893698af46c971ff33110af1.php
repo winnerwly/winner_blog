@@ -19,7 +19,7 @@
   <div class="main">
     <a class="logo" href="#" title="Fly">Fly社区</a>
     <div class="nav">
-      <a class="nav-this" href="/index.php/Question/index">
+      <a class="nav-this" href="/index.php/Question">
         <i class="iconfont icon-wenda"></i>问答
       </a>
       <a href="#" target="_blank">
@@ -44,7 +44,9 @@
       </a>
       <div class="nav">
         <a href="#"><i class="iconfont icon-shezhi"></i>设置</a>
-        <a href="/index.php/User/Index/logout"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>
+        <a href="/index.php/User/Index/logout">
+        	<i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了
+        </a>
       </div><?php endif; ?>
     </div>
   </div>

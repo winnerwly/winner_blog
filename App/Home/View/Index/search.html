@@ -17,21 +17,21 @@
 			          	</if> 
 			          	
 			          	<if condition="($status eq 0)"> 
-			          		<a href="__URL__?status=0" class="tab-this" >未结帖</a>
+			          		<a href="__URL__?status=0&key={$keyWord}" class="tab-this" >未结帖</a>
 			          	<else/>
-			          		<a href="__URL__?status=0" >未结帖</a>
+			          		<a href="__URL__?status=0&key={$keyWord}" >未结帖</a>
 			          	</if> 
 			          	
 			          	<if condition="($status eq 1)"> 
-			          		 <a href="__URL__?status=1" class="tab-this" >已采纳</a>
+			          		 <a href="__URL__?status=1&key={$keyWord}" class="tab-this" >已采纳</a>
 			          	<else/>
-			          		 <a href="__URL__?status=1" >已采纳</a>
+			          		 <a href="__URL__?status=1&key={$keyWord}" >已采纳</a>
 			          	</if> 
 			          	
 			          	<if condition="($status eq 2)"> 
-			          		<a href="__URL__?status=2" class="tab-this" >精帖</a>
+			          		<a href="__URL__?status=2&key={$keyWord}" class="tab-this" >精帖</a>
 			          	<else/>
-			          		<a href="__URL__?status=2" >精帖</a>
+			          		<a href="__URL__?status=2&key={$keyWord}" >精帖</a>
 			          	</if> 
 			          <a href="../user/index.html" >我的帖</a>
 			        </span>
@@ -39,7 +39,7 @@
 						<i class="iconfont icon-sousuo"></i>
 						<input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="key">
 					</form>
-					<a href="__URL__/add" class="layui-btn jie-add">发布问题</a>
+					<a href="/index.php/Question/Index/add" class="layui-btn jie-add">发布问题</a>
 				</div>
 
 				<ul class="fly-list">
@@ -50,7 +50,7 @@
 								<img src="{$vo.user_image}" alt="">
 							</a>
 							<h2 class="fly-tip">
-					            <a href="__URL__/detail?q={$vo.id}">{$vo.question_title}</a>
+					            <a href="/index.php/Question/Index/detail?q={$vo.id}">{$vo.question_title}</a>
 					             <if condition="($vo.s eq 1)"> 
 					             		<span class="fly-tip-stick">已解决</span>
 									<elseif condition="$vo.s eq 2"/>
@@ -70,9 +70,7 @@
 						</li>
 				</volist>
 				</ul>
-
 				<!-- <div class="fly-none">并无相关数据</div> -->
-
 				<div style="text-align: center">
 						{$show}
 				</div>
