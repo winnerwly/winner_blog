@@ -1,0 +1,348 @@
+[ 2017-08-31T17:32:04+08:00 ] ::1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000709s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000427s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000459s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0273s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0218s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0132s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000788s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000826s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010417s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010489s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000228s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000252s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000392s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000438s ]
+
+[ 2017-08-31T17:39:28+08:00 ] ::1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000244s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000453s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0025s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000100s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008582s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008617s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000153s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000177s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000485s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000529s ]
+
+[ 2017-08-31T17:39:32+08:00 ] ::1 /index.php/Home/Index?status=0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000219s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000318s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000348s ]
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0022s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE (  question_status = 0  ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where  question_status = 0  order by q.question_time desc limit 0,15 [ RunTime:0.0006s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000115s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008360s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008392s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000148s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000171s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000286s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000313s ]
+
+[ 2017-08-31T17:39:33+08:00 ] ::1 /index.php/Home/Index?status=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000218s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000293s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000340s ]
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0132s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE (  question_status = 1  ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where  question_status = 1  order by q.question_time desc limit 0,15 [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000053s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000080s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008448s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008483s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000159s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000197s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000413s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000439s ]
+
+[ 2017-08-31T17:39:34+08:00 ] ::1 /index.php/Home/Index?status=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000226s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000313s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000362s ]
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0025s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE (  question_status = 2  ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where  question_status = 2  order by q.question_time desc limit 0,15 [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0004s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000085s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008157s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008192s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000180s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000203s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000295s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000322s ]
+
+[ 2017-08-31T17:52:42+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000254s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000432s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000468s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0024s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0001s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000056s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000091s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008112s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008147s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000216s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000241s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000379s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000410s ]
+
+[ 2017-08-31T17:52:49+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000341s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000370s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0034s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0004s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000054s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000083s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007978s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008024s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000211s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000235s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000474s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000528s ]
+
+[ 2017-08-31T17:52:50+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000244s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000286s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000316s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000057s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000094s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009560s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009609s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000148s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000171s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000289s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000317s ]
+
+[ 2017-08-31T17:52:58+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000211s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000265s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000295s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0004s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000083s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007905s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007935s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000137s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000161s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000438s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000473s ]
+
+[ 2017-08-31T18:03:07+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000252s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000441s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000509s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0124s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000054s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000085s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008332s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008370s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000220s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000244s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000446s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000485s ]
+
+[ 2017-08-31T18:03:09+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000494s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000550s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0026s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0004s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000160s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000319s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014344s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014431s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000379s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000412s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000554s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000602s ]
+
+[ 2017-08-31T18:03:14+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000213s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000264s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000293s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0024s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0017s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0004s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000085s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007666s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007717s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000144s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000284s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000311s ]
+
+[ 2017-08-31T18:08:06+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000212s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000267s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000296s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\App\Home\Controller\IndexController.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `think_question` [ RunTime:0.0023s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_question` WHERE ( 1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where 1 order by q.question_time desc limit 0,15 [ RunTime:0.0005s ]
+SQL: SELECT `id`,`question_title`,`question_view` FROM `think_question` WHERE ( 1 ) ORDER BY question_view desc LIMIT 8   [ RunTime:0.0002s ]
+SQL: SELECT `id`,`question_title`,`question_comment` FROM `think_question` WHERE ( 1 ) ORDER BY question_comment desc LIMIT 8   [ RunTime:0.0003s ]
+SQL: SELECT u.id,u.user_name,u.user_image,count(a.id) as c from think_user as u left join think_answer as a on u.id = a.answe_uid where 1 GROUP by u.id order by c desc LIMIT 12 [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000094s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009207s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009238s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000145s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000168s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000369s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000411s ]
+

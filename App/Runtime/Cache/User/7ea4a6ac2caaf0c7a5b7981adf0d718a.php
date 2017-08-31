@@ -58,7 +58,7 @@
 		
 <div class="main fly-user-main layui-clear">
  	<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-	<li class="layui-nav-item layui-this">
+	<li class="layui-nav-item">
 		<a href="/index.php/User/Index/home?p=0">
 			<i class="layui-icon">&#xe609;</i> 我的主页
 		</a>

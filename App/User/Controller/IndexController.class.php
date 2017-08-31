@@ -14,11 +14,13 @@ class IndexController extends Controller {
 			$this->error("请登录！","/index.php/User/Index/login");
 		}
 	 }  
+
     //个人中心
     public function index(){
     	$this->before();
     	$this->display();
     }
+
     //用户登录
     public function login(){
     	
@@ -27,9 +29,9 @@ class IndexController extends Controller {
     		$map["user_pwd"] = md5($_POST["pass"]);
     		$code = $_POST["vercode"];
     		// 验证码
-    		if(!$this->verifyCheck($code)){
-    			$this->error("验证码错误！");
-    		}
+    		// if(!$this->verifyCheck($code)){
+    		// 	$this->error("验证码错误！");
+    		// }
     		
     		$res = M("user")->where($map)->field("id,user_name,user_image")->find();
     		if($res==null){
@@ -38,7 +40,7 @@ class IndexController extends Controller {
     			cookie("user_name",$res["user_name"]);
     			cookie("user_image",$res["user_image"]);
     			session("uid",$res["id"]);
-				$this->success("登录成功！","Index/index");    			
+				  $this->success("登录成功！","Index/index");    			
     		}
     	}else{
     		$this->display();
@@ -61,8 +63,8 @@ class IndexController extends Controller {
     	/**
     	 * 所有的提问
     	 * **/
-    	$res = M("question")->where("question_uid=".$uid)->getField("id,question_title,question_view,question_comment");
-    	dump($res);
+    	// $res = M("question")->where("question_uid=".$uid)->getField("id,question_title,question_view,question_comment");
+    	// dump($res);
     	/**
     	 * 所有的回答
     	 * **/
