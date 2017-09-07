@@ -22,8 +22,8 @@
       <a class="nav-this" href="/index.php/Question">
         <i class="iconfont icon-wenda"></i>问答
       </a>
-      <a href="#" target="_blank">
-        <i class="iconfont icon-ui"></i>框架
+      <a href="/index.php/User/Index/index?p=1">
+        <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
     
@@ -37,7 +37,7 @@
 	      </p> --><?php endif; ?>
       
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
-      <a class="avatar" href="#">
+      <a class="avatar" href="/index.php/User/Index/home?u=<?php echo (session('uid')); ?>">
         <img src="<?php echo (cookie('user_image')); ?>">
         <cite><?php echo (cookie('user_name')); ?></cite>
         <i>VIP2</i>
@@ -56,9 +56,9 @@
 
 		
 	<div class="fly-home" style="background-image: url();">
-  <img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0" alt="{{info.username}}">
+  <img src="<?php echo ($usermsg["user_image"]); ?>" alt="用户头像">
   <h1>
-    贤心
+    <?php echo ($usermsg["user_name"]); ?>
     <i class="iconfont icon-nan"></i> 
     <!-- <i class="iconfont icon-nv"></i> -->
     
@@ -68,15 +68,15 @@
   </h1>
   <p class="fly-home-info">
     <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span>
-    <i class="iconfont icon-shijian"></i><span>2015-06-17 加入</span>
+    <i class="iconfont icon-shijian"></i><span><?php echo ($usermsg["user_regtime"]); ?> 加入</span>
     <i class="iconfont icon-chengshi"></i><span>来自杭州</span>
   </p>
-  <p class="fly-home-sign">（人生仿若一场修行）</p>
+  <p class="fly-home-sign">（<?php echo ($usermsg["user_motto"]); ?>）</p>
 </div>
 <div class="main fly-home-main">
   <div class="layui-inline fly-home-jie">
     <div class="fly-panel">
-      <h3 class="fly-panel-title">贤心 最近的提问</h3>
+      <h3 class="fly-panel-title"><b><?php echo ($usermsg["user_name"]); ?></b> -- 最近的提问</h3>
       <ul class="jie-row">
         <li>
           <span class="fly-jing">精</span>
@@ -121,7 +121,7 @@
   
   <div class="layui-inline fly-home-da">
     <div class="fly-panel">
-      <h3 class="fly-panel-title">贤心 最近的回答</h3>
+      <h3 class="fly-panel-title"><b><?php echo ($usermsg["user_name"]); ?></b> -- 最近的回答</h3>
       <ul class="home-jieda">
         <li>
           <p>
@@ -130,9 +130,9 @@
           </p>
           <div class="home-dacontent">
             尝试给layer.photos加上这个属性试试：
-<pre>
-full: true         
-</pre>
+            <pre>
+            full: true         
+            </pre>
             文档没有提及
           </div>
         </li>
@@ -149,7 +149,6 @@ full: true
       <!-- <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><span>没有回答任何问题</span></div> -->
     </div>
   </div>
-
 </div>
 
 		

@@ -22,8 +22,8 @@
       <a class="nav-this" href="/index.php/Question">
         <i class="iconfont icon-wenda"></i>问答
       </a>
-      <a href="#" target="_blank">
-        <i class="iconfont icon-ui"></i>框架
+      <a href="/index.php/User/Index/index?p=1">
+        <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
     
@@ -31,13 +31,13 @@
      <?php if(empty($name)): ?><!-- 未登入状态 -->
 	      <a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>
 	      <span><a href="/index.php/User/Index/login">登入</a><a href="/index.php/User/Index/reg">注册</a></span>
-	      <p class="out-login">
+	     <!--  <p class="out-login">
 	        <a href="#" class="iconfont icon-qq" title="QQ登入"></a>
 	        <a href="#" class="iconfont icon-weibo" title="微博登入"></a>
-	      </p><?php endif; ?>
+	      </p> --><?php endif; ?>
       
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
-      <a class="avatar" href="#">
+      <a class="avatar" href="/index.php/User/Index/home?u=<?php echo (session('uid')); ?>">
         <img src="<?php echo (cookie('user_image')); ?>">
         <cite><?php echo (cookie('user_name')); ?></cite>
         <i>VIP2</i>
@@ -81,9 +81,9 @@
             <div class="layui-input-block">
               <select lay-verify="required" name="class">
                 <option></option>
-                <option value="1">layui框架综合</option> 
-                <option value="2">layui.mobile模块</option> 
-                <option value="3">layer弹出层</option> 
+                <option value="1">青铜</option> 
+                <option value="2">白银</option> 
+                <option value="3">黄金</option> 
               </select>
             </div>
           </div>

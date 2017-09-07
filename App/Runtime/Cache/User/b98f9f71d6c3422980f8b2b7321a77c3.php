@@ -22,8 +22,8 @@
       <a class="nav-this" href="/index.php/Question">
         <i class="iconfont icon-wenda"></i>问答
       </a>
-      <a href="#" target="_blank">
-        <i class="iconfont icon-ui"></i>框架
+      <a href="/index.php/User/Index/index?p=1">
+        <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
     
@@ -37,7 +37,7 @@
 	      </p> --><?php endif; ?>
       
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
-      <a class="avatar" href="#">
+      <a class="avatar" href="/index.php/User/Index/home?u=<?php echo (session('uid')); ?>">
         <img src="<?php echo (cookie('user_image')); ?>">
         <cite><?php echo (cookie('user_name')); ?></cite>
         <i>VIP2</i>

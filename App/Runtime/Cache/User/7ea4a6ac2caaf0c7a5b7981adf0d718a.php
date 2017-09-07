@@ -22,8 +22,8 @@
       <a class="nav-this" href="/index.php/Question">
         <i class="iconfont icon-wenda"></i>问答
       </a>
-      <a href="#" target="_blank">
-        <i class="iconfont icon-ui"></i>框架
+      <a href="/index.php/User/Index/index?p=1">
+        <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
     
@@ -31,10 +31,10 @@
      <?php if(empty($name)): ?><!-- 未登入状态 -->
 	      <a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>
 	      <span><a href="/index.php/User/Index/login">登入</a><a href="/index.php/User/Index/reg">注册</a></span>
-	      <p class="out-login">
+	     <!--  <p class="out-login">
 	        <a href="#" class="iconfont icon-qq" title="QQ登入"></a>
 	        <a href="#" class="iconfont icon-weibo" title="微博登入"></a>
-	      </p><?php endif; ?>
+	      </p> --><?php endif; ?>
       
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
       <a class="avatar" href="#">
@@ -73,7 +73,7 @@
 			<i class="layui-icon">&#xe620;</i> 基本设置
 		</a>
 	</li>
-	<li class="layui-nav-item ">
+	<li class="layui-nav-item">
 		<a href="/index.php/User/Index/message?p=3">
 			<i class="layui-icon">&#xe611;</i> 我的消息
 		</a>

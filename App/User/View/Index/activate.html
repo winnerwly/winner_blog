@@ -1,8 +1,9 @@
 <extend name="./Public/View/base.html" />
 <block name="styles"></block>
 <block name="header">
-	<include file="./Public/View/header.html" />
+  <include file="./Public/View/header.html" />
 </block>
+<block name="main">
 <div class="main fly-user-main layui-clear">
   <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
     <li class="layui-nav-item">
@@ -69,9 +70,9 @@
       </div>
     </div>
   </div>
-  
 </div>
+</block>
 <block name="footer">
-	<include file="./Public/View/footer.html" />
+  <include file="./Public/View/footer.html" />
 </block>
 <block name="scripts"></block>

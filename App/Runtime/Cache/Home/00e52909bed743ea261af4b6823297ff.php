@@ -22,8 +22,8 @@
       <a class="nav-this" href="/index.php/Question">
         <i class="iconfont icon-wenda"></i>问答
       </a>
-      <a href="#" target="_blank">
-        <i class="iconfont icon-ui"></i>框架
+      <a href="/index.php/User/Index/index?p=1">
+        <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
     
@@ -37,7 +37,7 @@
 	      </p> --><?php endif; ?>
       
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
-      <a class="avatar" href="#">
+      <a class="avatar" href="/index.php/User/Index/home?u=<?php echo (session('uid')); ?>">
         <img src="<?php echo (cookie('user_image')); ?>">
         <cite><?php echo (cookie('user_name')); ?></cite>
         <i>VIP2</i>
@@ -55,20 +55,19 @@
 
 
 		
-
 	<div class="main layui-clear">
 		<div class="wrap">
 			<div class="content">
 				<div class="fly-tab fly-tab-index">
 					<!--<span>
-		          <a href="jie/index.html">全部</a>
-		          <a href="jie/index.html">未结帖</a>
-		          <a href="jie/index.html">已采纳</a>
-		          <a href="jie/index.html">精帖</a>
-		          <a href="user/index.html">我的帖</a>
-		        </span>-->
+			          <a href="jie/index.html">全部</a>
+			          <a href="jie/index.html">未结帖</a>
+			          <a href="jie/index.html">已采纳</a>
+			          <a href="jie/index.html">精帖</a>
+			          <a href="user/index.html">我的帖</a>
+			        </span>-->
         
-        		<span>
+        			<span>
 						<?php if(($status == -1)): ?><a href="/index.php/Home/Index"  class="tab-this" >全部</a>
 			          	<?php else: ?>
 			          		<a href="/index.php/Home/Index"  >全部</a><?php endif; ?> 
@@ -95,25 +94,25 @@
 
 				<ul class="fly-list fly-list-top">
 					<?php if(is_array($question)): $i = 0; $__LIST__ = $question;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="fly-list-li">
-							<a href="user/home.html" class="fly-list-avatar">
+							<a href="/index.php/User/Index/home?u=<?php echo ($vo["uid"]); ?>" class="fly-list-avatar">
 								<img src="<?php echo ($vo["user_image"]); ?>" alt="">
 							</a>
 							<h2 class="fly-tip">
 					            <a href="/index.php/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
-					             <?php if(($vo["s"] == 1)): ?><span class="fly-tip-stick">已解决</span>
+					            <?php if(($vo["s"] == 1)): ?><span class="fly-tip-stick">已解决</span>
 									<?php elseif($vo["s"] == 2): ?>
 										<span class="fly-tip-stick">已解决</span>
 										<span class="fly-tip-jing">精帖</span><?php endif; ?>
 	          				</h2>
 							<p>
-								<span><a href="user/home.html"><?php echo ($vo["user_name"]); ?></a></span>
+								<span><a href="/index.php/User/Index/home?u=<?php echo ($vo["uid"]); ?>"><?php echo ($vo["user_name"]); ?></a></span>
 								<span><?php echo ($vo["question_time"]); ?></span>
 								<span><?php echo ($vo["type_name"]); ?></span>
 								<span class="fly-list-hint"> 
 					              <i class="iconfont" title="回答">&#xe60c;</i> <?php echo ($vo["question_comment"]); ?>
 					              <i class="iconfont" title="人气">&#xe60b;</i> <?php echo ($vo["question_view"]); ?>
-	           				 </span>
-							</p>
+	           				 	</span>
+							</p>	
 						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 				<div style="text-align: center">

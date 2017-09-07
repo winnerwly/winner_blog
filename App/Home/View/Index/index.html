@@ -3,20 +3,19 @@
 	<include file="./Public/View/header.html" />
 </block>
 <block name="main">
-
 	<div class="main layui-clear">
 		<div class="wrap">
 			<div class="content">
 				<div class="fly-tab fly-tab-index">
 					<!--<span>
-		          <a href="jie/index.html">全部</a>
-		          <a href="jie/index.html">未结帖</a>
-		          <a href="jie/index.html">已采纳</a>
-		          <a href="jie/index.html">精帖</a>
-		          <a href="user/index.html">我的帖</a>
-		        </span>-->
+			          <a href="jie/index.html">全部</a>
+			          <a href="jie/index.html">未结帖</a>
+			          <a href="jie/index.html">已采纳</a>
+			          <a href="jie/index.html">精帖</a>
+			          <a href="user/index.html">我的帖</a>
+			        </span>-->
         
-        		<span>
+        			<span>
 						<if condition="($status eq -1)"> 
 			          		<a href="__URL__"  class="tab-this" >全部</a>
 			          	<else/>
@@ -52,12 +51,12 @@
 				<ul class="fly-list fly-list-top">
 					<volist name="question" id="vo">
 						<li class="fly-list-li">
-							<a href="user/home.html" class="fly-list-avatar">
+							<a href="/index.php/User/Index/home?u={$vo.uid}" class="fly-list-avatar">
 								<img src="{$vo.user_image}" alt="">
 							</a>
 							<h2 class="fly-tip">
 					            <a href="/index.php/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
-					             <if condition="($vo.s eq 1)"> 
+					            <if condition="($vo.s eq 1)"> 
 					             		<span class="fly-tip-stick">已解决</span>
 									<elseif condition="$vo.s eq 2"/>
 										<span class="fly-tip-stick">已解决</span>
@@ -65,16 +64,16 @@
 								</if>
 	          				</h2>
 							<p>
-								<span><a href="user/home.html">{$vo.user_name}</a></span>
+								<span><a href="/index.php/User/Index/home?u={$vo.uid}">{$vo.user_name}</a></span>
 								<span>{$vo.question_time}</span>
 								<span>{$vo.type_name}</span>
 								<span class="fly-list-hint"> 
 					              <i class="iconfont" title="回答">&#xe60c;</i> {$vo.question_comment}
 					              <i class="iconfont" title="人气">&#xe60b;</i> {$vo.question_view}
-	           				 </span>
-							</p>
+	           				 	</span>
+							</p>	
 						</li>
-				</volist>
+					</volist>
 				</ul>
 				<div style="text-align: center">
 						{$show}

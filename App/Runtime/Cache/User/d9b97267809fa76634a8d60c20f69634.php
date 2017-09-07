@@ -15,7 +15,7 @@
 
 	<body>
 		
-	<div class="header">
+  <div class="header">
   <div class="main">
     <a class="logo" href="/index.php" title="Fly">Fly社区</a>
     <div class="nav">
@@ -56,69 +56,75 @@
 
 		
 <div class="main fly-user-main layui-clear">
-  	<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/home?p=0">
-			<i class="layui-icon">&#xe609;</i> 我的主页
-		</a>
-	</li>
-	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/index?p=1">
-			<i class="layui-icon">&#xe612;</i> 用户中心
-		</a>
-	</li>
-	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/set?p=2">
-			<i class="layui-icon">&#xe620;</i> 基本设置
-		</a>
-	</li>
-	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/message?p=3">
-			<i class="layui-icon">&#xe611;</i> 我的消息
-		</a>
-	</li>
-</ul>
-<input value="<?php echo ($_GET['p']); ?>" type="hidden" id="page-index" />
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-		var index = $("input#page-index").val();
-		$("ul li.layui-nav-item").removeClass("layui-this").eq(index).addClass("layui-this");
-	});
-	
-</script>
+  <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+    <li class="layui-nav-item">
+      <a href="home.html">
+        <i class="layui-icon">&#xe609;</i>
+        我的主页
+      </a>
+    </li>
+    <li class="layui-nav-item">
+      <a href="index.html">
+        <i class="layui-icon">&#xe612;</i>
+        用户中心
+      </a>
+    </li>
+    <li class="layui-nav-item">
+      <a href="set.html">
+        <i class="layui-icon">&#xe620;</i>
+        基本设置
+      </a>
+    </li>
+    <li class="layui-nav-item">
+      <a href="message.html">
+        <i class="layui-icon">&#xe611;</i>
+        我的消息
+      </a>
+    </li>
+  </ul>
+
   <div class="site-tree-mobile layui-hide">
     <i class="layui-icon">&#xe602;</i>
   </div>
   <div class="site-mobile-shade"></div>
-
+  
   <div class="fly-panel fly-panel-user" pad20>
-	  <div class="layui-tab layui-tab-brief" lay-filter="user" id="LAY_msg" style="margin-top: 15px;">
-	    <button class="layui-btn layui-btn-danger" id="LAY_delallmsg">清空全部消息</button>
-	    <div  id="LAY_minemsg" style="margin-top: 10px;">
-        <!--<div class="fly-none">您暂时没有最新消息</div>-->
-        <ul class="mine-msg">
-          <li data-id="123">
-            <blockquote class="layui-elem-quote">
-              <a href="/jump?username=Absolutely" target="_blank"><cite>Absolutely</cite></a>回答了您的求解<a target="_blank" href="/jie/8153.html/page/0/#item-1489505778669"><cite>layui后台框架</cite></a>
-            </blockquote>
-            <p><span>1小时前</span><a href="javascript:;" class="layui-btn layui-btn-small layui-btn-danger fly-delete">删除</a></p>
+    <div class="layui-tab layui-tab-brief" lay-filter="user">
+      <ul class="layui-tab-title">
+        <li class="layui-this">
+          激活邮箱
+        </li>
+      </ul>
+      <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+        <ul class="layui-form">
+          <li class="layui-form-li">
+            <label for="activate">您的邮箱：</label>
+            <span class="layui-form-text">xx@xx.com
+              <!-- <em style="color:#999;">（已成功激活）</em> -->
+              <em style="color:#c00;">（尚未激活）</em>
+            </span>
           </li>
-          <li data-id="123">
-            <blockquote class="layui-elem-quote">
-              系统消息：欢迎使用 layui
-            </blockquote>
-            <p><span>1小时前</span><a href="javascript:;" class="layui-btn layui-btn-small layui-btn-danger fly-delete">删除</a></p>
+          <li class="layui-form-li" style="margin-top: 20px; line-height: 26px;">
+            <div>
+              1. 如果您未收到邮件，或激活链接失效，您可以
+              <a class="layui-form-a" style="color:#4f99cf;" id="LAY-activate" href="javascript:;" email="{{user.email}}">重新发送邮件</a>，或者
+              <a class="layui-form-a" style="color:#4f99cf;" href="set.html">更换邮箱</a>；
+            </div>
+            <div>
+              2. 如果您始终没有收到 Fly 发送的邮件，请注意查看您邮箱中的垃圾邮件；
+            </div>
+            <div>
+              3. 如果你实在无法激活邮件，您还可以联系：admin@xx.com
+            </div>
           </li>
         </ul>
       </div>
-	  </div>
-	</div>
-
+    </div>
+  </div>
 </div>
 
 		
-	<div class="footer">
+  <div class="footer">
 	<p>
 		<a href="#">Fly社区</a> 2017 &copy;
 		<a href="#">layui.com</a>

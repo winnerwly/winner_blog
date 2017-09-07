@@ -1,17 +1,13 @@
 <?php
-/**
- * 命名空间
- *
- * 
- * **/
 namespace User\Controller;
 use Think\Controller;
+use Org\Util\Date;
 class IndexController extends Controller {
    //前置操作方法
 	 public function before(){
 		$this->assign("name",cookie("user_name"));
 		if(!session("uid")){
-			$this->error("请登录！","/index.php/User/Index/login");
+			$this->error("请登录!","/index.php/User/Index/login");
 		}
 	 }  
 
@@ -25,9 +21,10 @@ class IndexController extends Controller {
     public function login(){
     	
     	if(IS_POST){
-    		$map["user_email"] = $_POST["email"];
+    		$map["user_name"] = $_POST["username"];
     		$map["user_pwd"] = md5($_POST["pass"]);
     		$code = $_POST["vercode"];
+            
     		// 验证码
     		// if(!$this->verifyCheck($code)){
     		// 	$this->error("验证码错误！");
@@ -40,7 +37,7 @@ class IndexController extends Controller {
     			cookie("user_name",$res["user_name"]);
     			cookie("user_image",$res["user_image"]);
     			session("uid",$res["id"]);
-				  $this->success("登录成功！","Index/index");    			
+				$this->redirect("index");    			
     		}
     	}else{
     		$this->display();
@@ -59,15 +56,12 @@ class IndexController extends Controller {
     
     // 主页
     public function home(){
+        $this->before();
     	$uid = $_GET["u"];
-    	/**
-    	 * 所有的提问
-    	 * **/
-    	// $res = M("question")->where("question_uid=".$uid)->getField("id,question_title,question_view,question_comment");
-    	// dump($res);
-    	/**
-    	 * 所有的回答
-    	 * **/
+        $sql ="select * from think_user where id=".$uid."";
+        $res = M()->query($sql);
+        $res[0]["user_regtime"]= date("Y-m-d",$res[0]["user_reg_time"]);
+        $this->assign("usermsg",$res[0]);
     	$this->display();
     }
     
@@ -157,6 +151,6 @@ class IndexController extends Controller {
     	cookie("user_name",null);
     	cookie("user_image",null);
     	session("uid",null);
-    	$this->success("退出成功！","/index.php");
+    	$this->success("退出成功！","/index.php/User/Index/login");
     }
 }

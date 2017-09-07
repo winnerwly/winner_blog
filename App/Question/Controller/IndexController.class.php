@@ -13,7 +13,8 @@ class IndexController extends Controller {
 		}
 	 }  
     public function index(){
-    	$this->assign("name",cookie("user_name"));
+        $this->before();
+    	// $this->assign("name",cookie("user_name"));
     	$status = $_GET["status"];
     	$where = "1";
     	if($status==""||$status<0){
@@ -27,9 +28,7 @@ class IndexController extends Controller {
     	$show = $Page->show();
     	$sql = "select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where ".$where." order by q.question_time desc limit ".$Page->firstRow.",".$Page->listRows;
     	$res = M()->query($sql);
-    	
-//  	dump($res);
-    	/***
+    	/**
     	 * 
     	 * 刚刚
     	 * 几分钟前
@@ -38,10 +37,11 @@ class IndexController extends Controller {
     	 * 几月前
     	 * 几年前
     	 * time - now 
-    	 * */ 
+    	 **/ 
     	$tool = new Date();
-    	for($i = 0;$i<count($res);$i++)
+    	for($i = 0;$i<count($res);$i++){
     		$res[$i]["question_time"] = $tool->translate($res[$i]["question_time"]);
+    	}
     	$this->assign("question",$res);
     	$this->assign("show",$show);
     	
@@ -58,7 +58,7 @@ class IndexController extends Controller {
 			 * class :
 			 * experience :5 
 			 * vercode :2
-    		 * */
+    		 **/
     		$data["question_title"] = $_POST["title"];
     		$data["question_content"] = $_POST["content"];
     		$data["question_type"] = $_POST["class"];
@@ -67,7 +67,7 @@ class IndexController extends Controller {
     		$data["question_award"] = $_POST["experience"];
     		$qid = M("question")->add($data);
     		if($qid>0){
-    			$this->success("提问成功！","detail?q=".$qid);
+    			$this->redirect("detail?q=".$qid);
     		}else{
     			$this->error("未知错误！");
     		}
@@ -78,7 +78,8 @@ class IndexController extends Controller {
    		
     }
      public function detail(){
-     	$this->assign("name",cookie("user_name"));
+        $this->before();
+     	// $this->assign("name",cookie("user_name"));
      	$qid = $_GET["q"];
 		$sql = "select u.id as uid,u.user_name,u.user_image,q.* from think_user as u right join think_question as q on u.id = q.question_uid where q.id = ".$qid;
 		$res = M()->query($sql);
@@ -104,18 +105,18 @@ class IndexController extends Controller {
     }
     
     
-    private  function getComment($qid){
+    private function getComment($qid){
     	$cid = M("question")->where("id=".$qid)->getField("question_beast");
-    	
-    	$sql = "select a.* ,u.id as uid,u.user_name,u.user_image from think_answer as a left join think_user as u on a.answe_uid = u.id  where  a.answer_qid = ".$qid." and a.id !=".$cid." order by answer_time desc";
+    	$sql = "select a.* ,u.id as uid,u.user_name,u.user_image from think_answer as a left join think_user as u on a.answe_uid = u.id where a.answer_qid = ".$qid." and a.id !=".$cid." order by answer_time desc";
     	$res = M()->query($sql);
     	$tool = new Date();
     	for($i = 0;$i<count($res);$i++){
     		$res[$i]["answer_time"] = $tool->translate($res[$i]["answer_time"]);
     		$res[$i]["zan"] = M("answer_like")->where("like_cid = ".$res[$i]["id"])->count();
     	}
-    	if($cid>0)
+    	if($cid>0){
     		$beast = $this->getBeast($qid,$cid);
+        }
     	if($beast[0]!=NULL){
     		$beast[0]["answer_time"] = $tool->translate($beast[0]["answer_time"]);
     		$this->assign("beast",$beast[0]);
@@ -123,7 +124,7 @@ class IndexController extends Controller {
      	return $res;
     }
     
-    public  function comment(){
+    public function comment(){
     	$this->before();
     	$qid = $_POST["qid"];
     	$uid = $_POST["uid"];
@@ -146,7 +147,6 @@ class IndexController extends Controller {
     
     public function  deleteComment(){
     	$cid = $_GET["cid"];
-    	
     	if(M("answer")->where("id = ".$cid)->delete()){
     		$this->success("删除成功！");
     	}else{
@@ -157,13 +157,11 @@ class IndexController extends Controller {
     public function setBeast(){
     	$cid = $_GET["cid"];
     	$qid = $_GET["qid"];
-    	
     	if(M("question")->where("id=".$qid)->setField("question_beast",$cid)){
     		$this->success("采纳成功！");
     	}else{
     		$this->error("采纳失败！");
     	}
-    	
     }
     
     private function getBeast($qid,$cid){
