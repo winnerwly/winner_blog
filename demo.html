@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a=[{"countryid":1,"id":110000,"name":"北京市"},{"countryid":1,"id":120000,"name":"天津市"},{"countryid":1,"id":130000,"name":"河北省"},{"countryid":1,"id":140000,"name":"山西省"},{"countryid":1,"id":150000,"name":"内蒙古自治区"},{"countryid":1,"id":210000,"name":"辽宁省"},{"countryid":1,"id":220000,"name":"吉林省"}];
+		// this.provinceData = data.obj.map(function (elem) {
+  //         return {
+  //           name: elem.name,
+  //           value: elem.id,
+  //           id: elem.countryid
+  //         }
+  		var b = a.map(function (elem) {
+  			console.log('elem',elem)
+	        return {
+		        name: elem.name,
+		        value: elem.id,
+		        id: elem.countryid
+	        }
+  		})
+
+  		console.log('bbb',b)
+  		console.log('aaa',a)
+  		console.log('ccc',Object.keys(a))
+	</script>
+</body>
+</html>
