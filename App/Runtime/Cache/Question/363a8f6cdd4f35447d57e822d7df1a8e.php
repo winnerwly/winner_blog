@@ -37,7 +37,7 @@
 	      </p> --><?php endif; ?>
       
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
-      <a class="avatar" href="#">
+      <a class="avatar" href="/index.php/User/Index/home?u=<?php echo (session('uid')); ?>">
         <img src="<?php echo (cookie('user_image')); ?>">
         <cite><?php echo (cookie('user_name')); ?></cite>
         <i>VIP2</i>
