@@ -10,6 +10,7 @@ Runtime/
 docs/*
 .svn/
 
+.svn/*
 # Logs
 logs
 *.log
