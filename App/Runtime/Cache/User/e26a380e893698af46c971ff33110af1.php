@@ -17,10 +17,13 @@
 		
 	<div class="header">
   <div class="main">
-    <a class="logo" href="/index.php" title="Fly">Fly社区</a>
+    <a class="logo" href="<?php echo U('Home/Index/index');?>" title="Fly">首页</a>
     <div class="nav">
-      <a class="nav-this" href="/index.php/Question">
-        <i class="iconfont icon-wenda"></i>问答
+      <a class="nav-this" href="<?php echo U('User/Index/home?u='.session('uid'));?>">
+        <i class="iconfont icon-wenda"></i>我的问答
+      </a>
+      <a class="nav-this" href="<?php echo U('User/Index/index');?>">
+        <i class="iconfont icon-wenda"></i>问答中心
       </a>
       <a href="/index.php/User/Index/index?p=1">
         <i class="iconfont icon-ui"></i>个人中心

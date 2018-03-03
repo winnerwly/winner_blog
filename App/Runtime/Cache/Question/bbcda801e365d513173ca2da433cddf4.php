@@ -17,12 +17,15 @@
 		
 	<div class="header">
   <div class="main">
-    <a class="logo" href="/index.php" title="Fly">Fly社区</a>
+    <a class="logo" href="<?php echo U('Home/Index/index');?>" title="Fly">首页</a>
     <div class="nav">
-      <a class="nav-this" href="/index.php/Question">
-        <i class="iconfont icon-wenda"></i>问答
+      <a class="nav-this" href="<?php echo U('User/Index/home?u='.session('uid'));?>">
+        <i class="iconfont icon-wenda"></i>我的问答
       </a>
-      <a href="/index.php/User/Index/index?p=1">
+      <a class="nav-this" href="<?php echo U('User/Index/index');?>">
+        <i class="iconfont icon-logo"></i>问答中心
+      </a>
+      <a class="nav-this" href="/index.php/User/Index/index?p=1">
         <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
@@ -150,8 +153,8 @@
 									<span type="reply"><i class="iconfont icon-svgmoban53"></i>回复</span>
 									<?php if(!empty($is_author)): ?><div class="jieda-admin">
 											<span type="edit">编辑</span>
-											<span type="del"><a href="/index.php/Question/Index/deleteComment?cid=<?php echo ($vo["id"]); ?>">删除</a></span>
-											<span class="jieda-accept" type="accept"><a href="/index.php/Question/Index/setBeast?cid=<?php echo ($vo["id"]); ?>&qid=<?php echo ($question["id"]); ?>">采纳</a></span>
+											<span type="del"><a href="/Question/Index/deleteComment?cid=<?php echo ($vo["id"]); ?>">删除</a></span>
+											<span class="jieda-accept" type="accept"><a href="/Question/Index/setBeast?cid=<?php echo ($vo["id"]); ?>&qid=<?php echo ($question["id"]); ?>">采纳</a></span>
 										</div><?php endif; ?>
 								</div>
 							</li><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -160,7 +163,7 @@
 					</ul>
 
 					<div class="layui-form layui-form-pane">
-						<form action="/index.php/Question/Index/comment" method="post">
+						<form action="/Question/Index/comment" method="post">
 							<div class="layui-form-item layui-form-text">
 								<div class="layui-input-block">
 									<textarea id="L_content" name="content" required lay-verify="required" placeholder="我要回答" class="layui-textarea fly-editor" style="height: 150px;"></textarea>
@@ -181,7 +184,7 @@
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">最近热帖</dt>
 				<?php if(is_array($hot)): $i = 0; $__LIST__ = $hot;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-					<a href="/index.php/Question/Index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
+					<a href="/Question/Index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
 					<span><i class="iconfont">&#xe60b;</i><?php echo ($vo["question_view"]); ?></span>
 				</dd><?php endforeach; endif; else: echo "" ;endif; ?>
 			</dl>
@@ -189,7 +192,7 @@
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">近期热议</dt>
 				<?php if(is_array($hotComment)): $i = 0; $__LIST__ = $hotComment;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-					<a href="/index.php/Question/Index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
+					<a href="/Question/Index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
 					<span><i class="iconfont">&#xe60c;</i><?php echo ($vo["question_comment"]); ?></span>
 				</dd><?php endforeach; endif; else: echo "" ;endif; ?>
 			</dl>
@@ -227,7 +230,7 @@
 			var cid = $(this).parents("li").attr("data-id");
 			
 			var _self = $(this);
-			$.post("/index.php/Question/Index/like",{q:qid,c:cid},function(data){
+			$.post("/Question/Index/like",{q:qid,c:cid},function(data){
 				if(data.status == "ok"){
 					if(data.action=="like"){
 						_self.addClass("zanok");

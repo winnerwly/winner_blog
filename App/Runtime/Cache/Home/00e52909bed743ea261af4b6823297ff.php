@@ -17,12 +17,15 @@
 		
 	<div class="header">
   <div class="main">
-    <a class="logo" href="/index.php" title="Fly">Fly社区</a>
+    <a class="logo" href="<?php echo U('Home/Index/index');?>" title="Fly">首页</a>
     <div class="nav">
-      <a class="nav-this" href="/index.php/Question">
-        <i class="iconfont icon-wenda"></i>问答
+      <a class="nav-this" href="<?php echo U('User/Index/home?u='.session('uid'));?>">
+        <i class="iconfont icon-wenda"></i>我的问答
       </a>
-      <a href="/index.php/User/Index/index?p=1">
+      <a class="nav-this" href="<?php echo U('User/Index/index');?>">
+        <i class="iconfont icon-logo"></i>问答中心
+      </a>
+      <a class="nav-this" href="/index.php/User/Index/index?p=1">
         <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
@@ -68,22 +71,22 @@
 			        </span>-->
         
         			<span>
-						<?php if(($status == -1)): ?><a href="/index.php/Home/Index"  class="tab-this" >全部</a>
+						<?php if(($status == -1)): ?><a href="/Home/Index"  class="tab-this" >全部</a>
 			          	<?php else: ?>
-			          		<a href="/index.php/Home/Index"  >全部</a><?php endif; ?> 
+			          		<a href="/Home/Index"  >全部</a><?php endif; ?> 
 			          	
-			          	<?php if(($status == 0)): ?><a href="/index.php/Home/Index?status=0" class="tab-this" >未结帖</a>
+			          	<?php if(($status == 0)): ?><a href="/Home/Index?status=0" class="tab-this" >未结帖</a>
 			          	<?php else: ?>
-			          		<a href="/index.php/Home/Index?status=0" >未结帖</a><?php endif; ?> 
+			          		<a href="/Home/Index?status=0" >未结帖</a><?php endif; ?>
 			          	
-			          	<?php if(($status == 1)): ?><a href="/index.php/Home/Index?status=1" class="tab-this" >已采纳</a>
+			          	<?php if(($status == 1)): ?><a href="/Home/Index?status=1" class="tab-this" >已采纳</a>
 			          	<?php else: ?>
-			          		 <a href="/index.php/Home/Index?status=1" >已采纳</a><?php endif; ?> 
+			          		 <a href="/Home/Index?status=1" >已采纳</a><?php endif; ?> 
 			          	
-			          	<?php if(($status == 2)): ?><a href="/index.php/Home/Index?status=2" class="tab-this" >精帖</a>
+			          	<?php if(($status == 2)): ?><a href="/Home/Index?status=2" class="tab-this" >精帖</a>
 			          	<?php else: ?>
-			          		<a href="/index.php/Home/Index?status=2" >精帖</a><?php endif; ?> 
-			          <a href="../user/index.html" >我的帖</a>
+			          		<a href="/Home/Index?status=2" >精帖</a><?php endif; ?> 
+			          <a href="<?php echo U('User/Index/home?u='.session('uid'));?>" >我的帖</a>
 			        </span>
 					<form action="/index.php/Home/Index/search" method="get" class="fly-search">
 						<i class="iconfont icon-sousuo"></i>

@@ -5,49 +5,50 @@ use Think\Controller;
 use Org\Util\Date;
 use Think\Page;
 class IndexController extends Controller {
- 	//前置操作方法
+ 	//前置操作方法, 验证用户是否登陆
 	 public function before(){
 		$this->assign("name",cookie("user_name"));
 		if(!session("uid")){
 			$this->error("请登录！","/index.php/User/Index/login");
 		}
-	 }  
-    public function index(){
-        $this->before();
-    	// $this->assign("name",cookie("user_name"));
-    	$status = $_GET["status"];
-    	$where = "1";
-    	if($status==""||$status<0){
-    		$status = -1;
-    	}else{
-    		$where = " question_status = ".$status." ";
-    	}
+	}
+
+    // public function index(){
+    //     $this->before();
+    // 	// $this->assign("name",cookie("user_name"));
+    // 	$status = $_GET["status"];
+    // 	$where = "1";
+    // 	if($status==""||$status<0){
+    // 		$status = -1;
+    // 	}else{
+    // 		$where = " question_status = ".$status." ";
+    // 	}
     	
-    	$count = M("question")->where($where)->count();
-    	$Page = new page($count,15);
-    	$show = $Page->show();
-    	$sql = "select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where ".$where." order by q.question_time desc limit ".$Page->firstRow.",".$Page->listRows;
-    	$res = M()->query($sql);
-    	/**
-    	 * 
-    	 * 刚刚
-    	 * 几分钟前
-    	 * 几个小时前
-    	 * 几天前
-    	 * 几月前
-    	 * 几年前
-    	 * time - now 
-    	 **/ 
-    	$tool = new Date();
-    	for($i = 0;$i<count($res);$i++){
-    		$res[$i]["question_time"] = $tool->translate($res[$i]["question_time"]);
-    	}
-    	$this->assign("question",$res);
-    	$this->assign("show",$show);
+    // 	$count = M("question")->where($where)->count();
+    // 	$Page = new page($count,15);
+    // 	$show = $Page->show();
+    // 	$sql = "select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where ".$where." order by q.question_time desc limit ".$Page->firstRow.",".$Page->listRows;
+    // 	$res = M()->query($sql);
+    // 	/**
+    // 	 * 
+    // 	 * 刚刚
+    // 	 * 几分钟前
+    // 	 * 几个小时前
+    // 	 * 几天前
+    // 	 * 几月前
+    // 	 * 几年前
+    // 	 * time - now 
+    // 	 **/ 
+    // 	$tool = new Date();
+    // 	for($i = 0;$i<count($res);$i++){
+    // 		$res[$i]["question_time"] = $tool->translate($res[$i]["question_time"]);
+    // 	}
+    // 	$this->assign("question",$res);
+    // 	$this->assign("show",$show);
     	
-    	$this->assign("status",$status);
-   		$this->display();
-    }
+    // 	$this->assign("status",$status);
+   	// 	$this->display();
+    // }
     
     public function add(){
     	$this->before();
@@ -157,7 +158,9 @@ class IndexController extends Controller {
     public function setBeast(){
     	$cid = $_GET["cid"];
     	$qid = $_GET["qid"];
-    	if(M("question")->where("id=".$qid)->setField("question_beast",$cid)){
+        $Model = M("question");
+        $res = $Model->where("id=".$qid)->save(array("question_beast"=>$cid,'question_status'=>1));
+    	if($res){
     		$this->success("采纳成功！");
     	}else{
     		$this->error("采纳失败！");
@@ -204,24 +207,3 @@ class IndexController extends Controller {
     }
     
 }
-
-/***
- * select * from think_user,think_question where think_question.question_uid = think_user.id and think_question.id = 2
- * 
- * select u.user_name,u.user_image,q.* from think_user as u ,think_question as q where q.question_uid = u.id and q.id = 2
- * 
- * select u.user_name,u.user_image,q.* from think_user as u right join think_question as q on u.id = q.question_uid where q.id = 1
- * 
- * **/
-
-
-/***
- * 1. 多表查询
- * 
- * 2. volist 输出
- * 
- * 3. 模版 中的 if else 
- * 
- * 4. 分页操作
- * 
- * ***/

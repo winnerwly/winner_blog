@@ -31,8 +31,9 @@ class IndexController extends Controller {
     	$sql = "select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where ".$where." order by q.question_time desc limit ".$Page->firstRow.",".$Page->listRows;
     	$res = M()->query($sql);
     	$tool = new Date();
-    	for($i = 0;$i<count($res);$i++)
+    	for($i = 0;$i<count($res);$i++){
     		$res[$i]["question_time"] = $tool->translate($res[$i]["question_time"]);
+        }
     	$hot = $this->getHot();
     	$hotComment = $this->getHotComment();
     	$beastUser = $this->getBeastUser();

@@ -85,7 +85,7 @@
                   <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="padding: 0;">
-                  <span ><a href="#" id="verify-code" ><img src="/User/Index/verifyCode" style="height: 38px;"></a></span>
+                  <span ><a href="#" id="verify-code" ><img src="<?php echo U('verifyCode');?>" style="height: 38px;"></a></span>
                 </div>
               </div>
               <div class="layui-form-item">

@@ -17,7 +17,7 @@
 		
 	<div class="header">
   <div class="main">
-    <a class="logo" href="/index.php" title="Fly">Fly社区</a>
+    <a class="logo" href="<?php echo U('Home/Index/index');?>" title="Fly">首页</a>
     <div class="nav">
       <a class="nav-this" href="/index.php/Question">
         <i class="iconfont icon-wenda"></i>问答

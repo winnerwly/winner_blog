@@ -26,7 +26,7 @@
 			          		<a href="__URL__?status=0" class="tab-this" >未结帖</a>
 			          	<else/>
 			          		<a href="__URL__?status=0" >未结帖</a>
-			          	</if> 
+			          	</if>
 			          	
 			          	<if condition="($status eq 1)"> 
 			          		 <a href="__URL__?status=1" class="tab-this" >已采纳</a>
@@ -39,7 +39,7 @@
 			          	<else/>
 			          		<a href="__URL__?status=2" >精帖</a>
 			          	</if> 
-			          <a href="../user/index.html" >我的帖</a>
+			          <a href="{:U('User/Index/home?u='.session('uid'))}" >我的帖</a>
 			        </span>
 					<form action="/index.php/Home/Index/search" method="get" class="fly-search">
 						<i class="iconfont icon-sousuo"></i>
