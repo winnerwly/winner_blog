@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用户展示</title>
+  <link rel="stylesheet" href="__PUBLIC__/bs/css/bootstrap.min.css">
+  <script src="__PUBLIC__/bs/js/jquery.min.js"></script>
+  <script src="__PUBLIC__/bs/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico" />
+  <style>
+    .container {
+      padding-top: 18px;
+    }
+    .table {
+      border: 1px solid #ddd!important;
+    }
+    table thead th{
+      text-align: center!important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <button class="btn btn-danger">用户展示页面</button>
+        <a href="{:U('add')}" class="btn btn-success">用户添加</a>
+      </div>
+      <div class="panel-body text-center">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>密码</th>
+            <th>创建时间</th>
+            <th>状态</th>
+            <th>删除</th>
+            <th>修改</th>
+          </thead>
+          <tbody>
+            <volist name="data" id="datainfo">
+              <tr>
+                <td>{$datainfo[id]}</td>
+                <td>{$datainfo[name]}</td>
+                <td>{$datainfo[sex]==='1'?'男':'女'}</td>
+                <td>{$datainfo[password]}</td>
+                <td>{$datainfo[time]}</td>
+                <td>{$status[$datainfo[status]]}</td>
+                <td><a href="{:U('delete',array('id'=>$datainfo[id]))}">删除</a></td>
+                <td><a href="{:U('update',array('id'=>$datainfo[id]))}">修改</a></td>
+              </tr>
+            </volist>
+          </tbody>
+        </table>
+        <if condition="11 lt $count">
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+
+              <!-- 上一页 -->
+              <if condition="$page gt 1">
+                <li>
+                  <a href="{:U('index',array('page'=>($page-1)))}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+              </if>
+
+              <!-- 分页码 -->
+              <for start="1" end="$rows+1">
+                <if condition="$i eq $page">
+                  <li class="active"><a href="{:U('index',array('page'=>$i))}">{$i}</a></li>
+                <else />
+                  <li><a href="{:U('index',array('page'=>$i))}">{$i}</a></li>
+                </if>
+              </for>
+
+              <!-- 下一页 -->
+              <if condition="$page lt $rows">
+                <li>
+                  <a href="{:U('index',array('page'=>($page+1)>=$rows?$rows:($page+1)))}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </if>
+
+            </ul>
+          </nav>
+        </if>
+      </div>
+      <div class="panel-footer text-center">页脚</div>
+    </div>
+  </div>
+</body>
+</html>

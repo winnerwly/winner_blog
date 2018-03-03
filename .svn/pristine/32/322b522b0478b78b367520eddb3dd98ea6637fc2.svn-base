@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>添加用户</title>
+  <link rel="stylesheet" href="__PUBLIC__/bs/css/bootstrap.min.css">
+  <script src="__PUBLIC__/bs/js/jquery.min.js"></script>
+  <script src="__PUBLIC__/bs/js/bootstrap.min.js"></script>
+  <style>
+    .container {
+      padding-top: 18px;
+    }
+    .from-group {
+      padding-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <button class="btn btn-danger">用户添加页面</button>
+        <a href="{:U('index')}" class="btn btn-success">用户展示页面</a>
+      </div>
+      <div class="panel-body">
+        <form action="" method="post">
+          <div class="from-group">
+            <label for="">用户名:</label>
+            <input type="text" class="form-control" name="name">
+          </div>
+          <div class="from-group">
+            <label for="">密码:</label>
+            <input type="password" class="form-control" name="password">
+          </div>
+          <div class="from-group">
+            <label for="">性别:</label>
+            <input type="radio" name="sex" id="optionsRadios1" value="1" checked>
+            <label for="optionsRadios1">男</label>
+            <input type="radio" name="sex" id="optionsRadios2" value="2">
+            <label for="optionsRadios2">女</label>
+          </div>
+          <div class="from-group">
+            <label for="">爱好:</label>
+            <input type="radio" name="status" id="love1" value="1" checked>
+            <label for="love1">看书</label>
+            <input type="radio" name="status" id="love2" value="2">
+            <label for="love2">玩游戏</label>
+            <input type="radio" name="status" id="love3" value="0">
+            <label for="love3">其他</label>
+          </div>
+          <div class="from-group">
+            <input type="submit" value="提交" class="btn btn-success">
+            <input type="reset" value="重置" class="btn btn-danger">
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer text-center">这只是一个很简单的页脚</div>
+    </div>
+  </div>
+</body>
+</html>

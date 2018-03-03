@@ -1,0 +1,31 @@
+<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+	<li class="layui-nav-item">
+		<a href="__URL__/home?p=0">
+			<i class="layui-icon">&#xe609;</i> 我的主页
+		</a>
+	</li>
+	<li class="layui-nav-item">
+		<a href="__URL__/index?p=1">
+			<i class="layui-icon">&#xe612;</i> 用户中心
+		</a>
+	</li>
+	<li class="layui-nav-item">
+		<a href="__URL__/set?p=2">
+			<i class="layui-icon">&#xe620;</i> 基本设置
+		</a>
+	</li>
+	<li class="layui-nav-item">
+		<a href="__URL__/message?p=3">
+			<i class="layui-icon">&#xe611;</i> 我的消息
+		</a>
+	</li>
+</ul>
+<input value="{$Think.get.p}" type="hidden" id="page-index" />
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		var index = $("input#page-index").val();
+		$("ul li.layui-nav-item").removeClass("layui-this").eq(index).addClass("layui-this");
+	});
+	
+</script>

@@ -59,22 +59,22 @@
 <div class="main fly-user-main layui-clear">
  	<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
 	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/home?p=0">
+		<a href="/User/Index/home?p=0">
 			<i class="layui-icon">&#xe609;</i> 我的主页
 		</a>
 	</li>
 	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/index?p=1">
+		<a href="/User/Index/index?p=1">
 			<i class="layui-icon">&#xe612;</i> 用户中心
 		</a>
 	</li>
 	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/set?p=2">
+		<a href="/User/Index/set?p=2">
 			<i class="layui-icon">&#xe620;</i> 基本设置
 		</a>
 	</li>
 	<li class="layui-nav-item">
-		<a href="/index.php/User/Index/message?p=3">
+		<a href="/User/Index/message?p=3">
 			<i class="layui-icon">&#xe611;</i> 我的消息
 		</a>
 	</li>
