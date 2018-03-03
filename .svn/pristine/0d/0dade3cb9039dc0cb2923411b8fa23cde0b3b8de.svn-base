@@ -1,0 +1,143 @@
+<extend name="./Public/View/base.html" />
+<block name="header">
+	<include file="./Public/View/header.html" />
+</block>
+<block name="main">
+	<div class="main layui-clear">
+		<div class="wrap">
+			<div class="content">
+				<div class="fly-tab fly-tab-index">
+					<!--<span>
+			          <a href="jie/index.html">全部</a>
+			          <a href="jie/index.html">未结帖</a>
+			          <a href="jie/index.html">已采纳</a>
+			          <a href="jie/index.html">精帖</a>
+			          <a href="user/index.html">我的帖</a>
+			        </span>-->
+        
+        			<span>
+						<if condition="($status eq -1)"> 
+			          		<a href="__URL__"  class="tab-this" >全部</a>
+			          	<else/>
+			          		<a href="__URL__"  >全部</a>
+			          	</if> 
+			          	
+			          	<if condition="($status eq 0)"> 
+			          		<a href="__URL__?status=0" class="tab-this" >未结帖</a>
+			          	<else/>
+			          		<a href="__URL__?status=0" >未结帖</a>
+			          	</if> 
+			          	
+			          	<if condition="($status eq 1)"> 
+			          		 <a href="__URL__?status=1" class="tab-this" >已采纳</a>
+			          	<else/>
+			          		 <a href="__URL__?status=1" >已采纳</a>
+			          	</if> 
+			          	
+			          	<if condition="($status eq 2)"> 
+			          		<a href="__URL__?status=2" class="tab-this" >精帖</a>
+			          	<else/>
+			          		<a href="__URL__?status=2" >精帖</a>
+			          	</if> 
+			          <a href="../user/index.html" >我的帖</a>
+			        </span>
+					<form action="/Home/Index/search" method="get" class="fly-search">
+						<i class="iconfont icon-sousuo"></i>
+						<input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="key">
+					</form>
+					<a href="/Question/Index/add" class="layui-btn jie-add">发布问题</a>
+				</div>
+
+				<ul class="fly-list fly-list-top">
+					<volist name="question" id="vo">
+						<li class="fly-list-li">
+							<a href="/User/Index/home?u={$vo.uid}" class="fly-list-avatar">
+								<img src="{$vo.user_image}" alt="">
+							</a>
+							<h2 class="fly-tip">
+					            <a href="/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
+					            <if condition="($vo.s eq 1)"> 
+					             		<span class="fly-tip-stick">已解决</span>
+									<elseif condition="$vo.s eq 2"/>
+										<span class="fly-tip-stick">已解决</span>
+										<span class="fly-tip-jing">精帖</span>
+								</if>
+	          				</h2>
+							<p>
+								<span><a href="/User/Index/home?u={$vo.uid}">{$vo.user_name}</a></span>
+								<span>{$vo.question_time}</span>
+								<span>{$vo.type_name}</span>
+								<span class="fly-list-hint"> 
+					              <i class="iconfont" title="回答">&#xe60c;</i> {$vo.question_comment}
+					              <i class="iconfont" title="人气">&#xe60b;</i> {$vo.question_view}
+	           				 	</span>
+							</p>	
+						</li>
+					</volist>
+				</ul>
+				<div style="text-align: center">
+						{$show}
+				</div>
+
+			</div>
+		</div>
+
+		<div class="edge">
+			<div class="fly-panel leifeng-rank">
+				<h3 class="fly-panel-title">近一月回答榜 - TOP 12</h3>
+				<dl>
+					<volist id="vo" name="beastUser">
+						<dd>
+							<a href="/User/Index/home?u={$vo.id}">
+								<img src="{$vo.user_image}">
+								<cite>{$vo.user_name}</cite>
+								<i>{$vo.c}次回答</i>
+							</a>
+						</dd>
+					</volist>
+				</dl>
+			</div>
+
+			<dl class="fly-panel fly-list-one">
+				<dt class="fly-panel-title">最近热帖</dt>
+				<volist id="vo" name="hot" >
+				<dd>
+					<a href="/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
+					<span><i class="iconfont">&#xe60b;</i>{$vo.question_view}</span>
+				</dd>
+				</volist>
+			</dl>
+
+			<dl class="fly-panel fly-list-one">
+				<dt class="fly-panel-title">近期热议</dt>
+				<volist id="vo" name="hotComment" >
+				<dd>
+					<a href="/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
+					<span><i class="iconfont">&#xe60c;</i>{$vo.question_comment}</span>
+				</dd>
+				</volist>
+			</dl>
+
+			<div class="fly-panel fly-link">
+				<h3 class="fly-panel-title">友情链接</h3>
+				<dl>
+					<dd>
+						<a href="http://www.layui.com/" target="_blank">layui</a>
+					</dd>
+					<dd>
+						<a href="http://layim.layui.com/" target="_blank">LayIM</a>
+					</dd>
+					<dd>
+						<a href="http://layer.layui.com/" target="_blank">layer</a>
+					</dd>
+				</dl>
+			</div>
+
+		</div>
+	</div>
+
+</block>
+<block name="footer">
+	<include file="./Public/View/footer.html" />
+</block>
+<block name="scripts"></block>

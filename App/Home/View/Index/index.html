@@ -41,21 +41,21 @@
 			          	</if> 
 			          <a href="{:U('User/Index/home?u='.session('uid'))}" >我的帖</a>
 			        </span>
-					<form action="/index.php/Home/Index/search" method="get" class="fly-search">
+					<form action="/Home/Index/search" method="get" class="fly-search">
 						<i class="iconfont icon-sousuo"></i>
 						<input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="key">
 					</form>
-					<a href="/index.php/Question/Index/add" class="layui-btn jie-add">发布问题</a>
+					<a href="/Question/Index/add" class="layui-btn jie-add">发布问题</a>
 				</div>
 
 				<ul class="fly-list fly-list-top">
 					<volist name="question" id="vo">
 						<li class="fly-list-li">
-							<a href="/index.php/User/Index/home?u={$vo.uid}" class="fly-list-avatar">
+							<a href="/User/Index/home?u={$vo.uid}" class="fly-list-avatar">
 								<img src="{$vo.user_image}" alt="">
 							</a>
 							<h2 class="fly-tip">
-					            <a href="/index.php/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
+					            <a href="/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
 					            <if condition="($vo.s eq 1)"> 
 					             		<span class="fly-tip-stick">已解决</span>
 									<elseif condition="$vo.s eq 2"/>
@@ -64,7 +64,7 @@
 								</if>
 	          				</h2>
 							<p>
-								<span><a href="/index.php/User/Index/home?u={$vo.uid}">{$vo.user_name}</a></span>
+								<span><a href="/User/Index/home?u={$vo.uid}">{$vo.user_name}</a></span>
 								<span>{$vo.question_time}</span>
 								<span>{$vo.type_name}</span>
 								<span class="fly-list-hint"> 
@@ -88,7 +88,7 @@
 				<dl>
 					<volist id="vo" name="beastUser">
 						<dd>
-							<a href="/index.php/User/Index/home?u={$vo.id}">
+							<a href="/User/Index/home?u={$vo.id}">
 								<img src="{$vo.user_image}">
 								<cite>{$vo.user_name}</cite>
 								<i>{$vo.c}次回答</i>
@@ -102,7 +102,7 @@
 				<dt class="fly-panel-title">最近热帖</dt>
 				<volist id="vo" name="hot" >
 				<dd>
-					<a href="/index.php/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
+					<a href="/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
 					<span><i class="iconfont">&#xe60b;</i>{$vo.question_view}</span>
 				</dd>
 				</volist>
@@ -112,7 +112,7 @@
 				<dt class="fly-panel-title">近期热议</dt>
 				<volist id="vo" name="hotComment" >
 				<dd>
-					<a href="/index.php/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
+					<a href="/Question/index/detail?q={$vo.id}">{$vo.question_title}</a>
 					<span><i class="iconfont">&#xe60c;</i>{$vo.question_comment}</span>
 				</dd>
 				</volist>

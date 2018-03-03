@@ -7,7 +7,7 @@ class IndexController extends Controller {
    public function before(){
     $this->assign("name",cookie("user_name"));
     if(!session("uid")){
-      $this->error("请登录!","/index.php/User/Index/login");
+      $this->error("请登录!","/User/Index/login");
     }
    }  
 
@@ -178,6 +178,6 @@ class IndexController extends Controller {
     cookie("user_name",null);
     cookie("user_image",null);
     session("uid",null);
-    $this->success("退出成功！","/index.php/User/Index/login");
+    $this->success("退出成功！","/User/Index/login");
   }
 }

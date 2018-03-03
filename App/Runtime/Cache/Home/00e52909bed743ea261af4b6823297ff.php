@@ -25,7 +25,7 @@
       <a class="nav-this" href="<?php echo U('User/Index/index');?>">
         <i class="iconfont icon-logo"></i>问答中心
       </a>
-      <a class="nav-this" href="/index.php/User/Index/index?p=1">
+      <a class="nav-this" href="/User/Index/index?p=1">
         <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
@@ -33,21 +33,21 @@
     <div class="nav-user">
      <?php if(empty($name)): ?><!-- 未登入状态 -->
 	      <a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>
-	      <span><a href="/index.php/User/Index/login">登入</a><a href="/index.php/User/Index/reg">注册</a></span>
+	      <span><a href="/User/Index/login">登入</a><a href="/User/Index/reg">注册</a></span>
 	     <!--  <p class="out-login">
 	        <a href="#" class="iconfont icon-qq" title="QQ登入"></a>
 	        <a href="#" class="iconfont icon-weibo" title="微博登入"></a>
 	      </p> --><?php endif; ?>
       
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
-      <a class="avatar" href="/index.php/User/Index/home?u=<?php echo (session('uid')); ?>">
+      <a class="avatar" href="/User/Index/home?u=<?php echo (session('uid')); ?>">
         <img src="<?php echo (cookie('user_image')); ?>">
         <cite><?php echo (cookie('user_name')); ?></cite>
         <i>VIP2</i>
       </a>
       <div class="nav">
         <a href="#"><i class="iconfont icon-shezhi"></i>设置</a>
-        <a href="/index.php/User/Index/logout">
+        <a href="/User/Index/logout">
         	<i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了
         </a>
       </div><?php endif; ?>
@@ -88,27 +88,27 @@
 			          		<a href="/Home/Index?status=2" >精帖</a><?php endif; ?> 
 			          <a href="<?php echo U('User/Index/home?u='.session('uid'));?>" >我的帖</a>
 			        </span>
-					<form action="/index.php/Home/Index/search" method="get" class="fly-search">
+					<form action="/Home/Index/search" method="get" class="fly-search">
 						<i class="iconfont icon-sousuo"></i>
 						<input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="key">
 					</form>
-					<a href="/index.php/Question/Index/add" class="layui-btn jie-add">发布问题</a>
+					<a href="/Question/Index/add" class="layui-btn jie-add">发布问题</a>
 				</div>
 
 				<ul class="fly-list fly-list-top">
 					<?php if(is_array($question)): $i = 0; $__LIST__ = $question;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li class="fly-list-li">
-							<a href="/index.php/User/Index/home?u=<?php echo ($vo["uid"]); ?>" class="fly-list-avatar">
+							<a href="/User/Index/home?u=<?php echo ($vo["uid"]); ?>" class="fly-list-avatar">
 								<img src="<?php echo ($vo["user_image"]); ?>" alt="">
 							</a>
 							<h2 class="fly-tip">
-					            <a href="/index.php/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
+					            <a href="/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
 					            <?php if(($vo["s"] == 1)): ?><span class="fly-tip-stick">已解决</span>
 									<?php elseif($vo["s"] == 2): ?>
 										<span class="fly-tip-stick">已解决</span>
 										<span class="fly-tip-jing">精帖</span><?php endif; ?>
 	          				</h2>
 							<p>
-								<span><a href="/index.php/User/Index/home?u=<?php echo ($vo["uid"]); ?>"><?php echo ($vo["user_name"]); ?></a></span>
+								<span><a href="/User/Index/home?u=<?php echo ($vo["uid"]); ?>"><?php echo ($vo["user_name"]); ?></a></span>
 								<span><?php echo ($vo["question_time"]); ?></span>
 								<span><?php echo ($vo["type_name"]); ?></span>
 								<span class="fly-list-hint"> 
@@ -130,7 +130,7 @@
 				<h3 class="fly-panel-title">近一月回答榜 - TOP 12</h3>
 				<dl>
 					<?php if(is_array($beastUser)): $i = 0; $__LIST__ = $beastUser;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-							<a href="/index.php/User/Index/home?u=<?php echo ($vo["id"]); ?>">
+							<a href="/User/Index/home?u=<?php echo ($vo["id"]); ?>">
 								<img src="<?php echo ($vo["user_image"]); ?>">
 								<cite><?php echo ($vo["user_name"]); ?></cite>
 								<i><?php echo ($vo["c"]); ?>次回答</i>
@@ -142,7 +142,7 @@
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">最近热帖</dt>
 				<?php if(is_array($hot)): $i = 0; $__LIST__ = $hot;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-					<a href="/index.php/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
+					<a href="/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
 					<span><i class="iconfont">&#xe60b;</i><?php echo ($vo["question_view"]); ?></span>
 				</dd><?php endforeach; endif; else: echo "" ;endif; ?>
 			</dl>
@@ -150,7 +150,7 @@
 			<dl class="fly-panel fly-list-one">
 				<dt class="fly-panel-title">近期热议</dt>
 				<?php if(is_array($hotComment)): $i = 0; $__LIST__ = $hotComment;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dd>
-					<a href="/index.php/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
+					<a href="/Question/index/detail?q=<?php echo ($vo["id"]); ?>"><?php echo ($vo["question_title"]); ?></a>
 					<span><i class="iconfont">&#xe60c;</i><?php echo ($vo["question_comment"]); ?></span>
 				</dd><?php endforeach; endif; else: echo "" ;endif; ?>
 			</dl>

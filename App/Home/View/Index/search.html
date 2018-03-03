@@ -35,11 +35,11 @@
 			          	</if> 
 			          <a href="../user/index.html" >我的帖</a>
 			        </span>
-					<form action="/index.php/Home/Index/search" method="get" class="fly-search">
+					<form action="/Home/Index/search" method="get" class="fly-search">
 						<i class="iconfont icon-sousuo"></i>
 						<input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="key">
 					</form>
-					<a href="/index.php/Question/Index/add" class="layui-btn jie-add">发布问题</a>
+					<a href="/Question/Index/add" class="layui-btn jie-add">发布问题</a>
 				</div>
 
 				<ul class="fly-list">
@@ -50,7 +50,7 @@
 								<img src="{$vo.user_image}" alt="">
 							</a>
 							<h2 class="fly-tip">
-					            <a href="/index.php/Question/Index/detail?q={$vo.id}">{$vo.question_title}</a>
+					            <a href="/Question/Index/detail?q={$vo.id}">{$vo.question_title}</a>
 					             <if condition="($vo.s eq 1)"> 
 					             		<span class="fly-tip-stick">已解决</span>
 									<elseif condition="$vo.s eq 2"/>

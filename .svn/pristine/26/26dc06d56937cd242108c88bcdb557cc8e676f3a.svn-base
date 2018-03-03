@@ -1,0 +1,41 @@
+<div class="header">
+  <div class="main">
+    <a class="logo" href="/index.php" title="Fly">Fly社区</a>
+    <div class="nav">
+      <a class="nav-this" href="/index.php/Question">
+        <i class="iconfont icon-wenda"></i>问答
+      </a>
+      <a href="/index.php/User/Index/index?p=1">
+        <i class="iconfont icon-ui"></i>个人中心
+      </a>
+    </div>
+    
+    <div class="nav-user">
+     <empty name="name">
+	     <!-- 未登入状态 -->
+	      <a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>
+	      <span><a href="/index.php/User/Index/login">登入</a><a href="/index.php/User/Index/reg">注册</a></span>
+	     <!--  <p class="out-login">
+	        <a href="#" class="iconfont icon-qq" title="QQ登入"></a>
+	        <a href="#" class="iconfont icon-weibo" title="微博登入"></a>
+	      </p> -->   
+     </empty>
+      
+      <notempty name="name">	
+      <!-- 登入后的状态 -->
+      <a class="avatar" href="/index.php/User/Index/home?u={$Think.session.uid}">
+        <img src="{$Think.cookie.user_image}">
+        <cite>{$Think.cookie.user_name}</cite>
+        <i>VIP2</i>
+      </a>
+      <div class="nav">
+        <a href="#"><i class="iconfont icon-shezhi"></i>设置</a>
+        <a href="/index.php/User/Index/logout">
+        	<i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了
+        </a>
+      </div> 
+      </notempty>
+    </div>
+  </div>
+</div>
+
