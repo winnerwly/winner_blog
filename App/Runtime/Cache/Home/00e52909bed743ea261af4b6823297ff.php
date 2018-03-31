@@ -8,6 +8,7 @@
 		<meta name="description" content="页面描述">
 		<link rel="stylesheet" href="/Public/layui/css/layui.css">
 		<link rel="stylesheet" href="/Public/css/global.css">
+		<link rel="stylesheet" type="text/css" href="./icon/iconfont.css">
 		
 		<script src="/Public/jquery-2.1.0.js"></script>
 		
@@ -29,33 +30,37 @@
         <i class="iconfont icon-ui"></i>个人中心
       </a>
     </div>
-    
+
     <div class="nav-user">
-     <?php if(empty($name)): ?><!-- 未登入状态 -->
-	      <a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>
-	      <span><a href="/User/Index/login">登入</a><a href="/User/Index/reg">注册</a></span>
-	     <!--  <p class="out-login">
+      <?php if(empty($name)): ?><!-- 未登入状态 -->
+        <a class="unlogin" href="#">
+          <i class="iconfont icon-touxiang"></i>
+        </a>
+        <span>
+          <a href="/User/Index/login">登入</a>
+          <a href="/User/Index/reg">注册</a>
+        </span>
+        <!--  <p class="out-login">
 	        <a href="#" class="iconfont icon-qq" title="QQ登入"></a>
 	        <a href="#" class="iconfont icon-weibo" title="微博登入"></a>
 	      </p> --><?php endif; ?>
-      
+
       <?php if(!empty($name)): ?><!-- 登入后的状态 -->
-      <a class="avatar" href="/User/Index/home?u=<?php echo (session('uid')); ?>">
-        <img src="<?php echo (cookie('user_image')); ?>">
-        <cite><?php echo (cookie('user_name')); ?></cite>
-        <i>VIP2</i>
-      </a>
-      <div class="nav">
-        <a href="#"><i class="iconfont icon-shezhi"></i>设置</a>
-        <a href="/User/Index/logout">
-        	<i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了
+        <a class="avatar" href="/User/Index/home?u=<?php echo (session('uid')); ?>">
+          <img src="<?php echo (cookie('user_image')); ?>">
+          <cite><?php echo (cookie('user_name')); ?></cite>
+          <i>VIP2</i>
         </a>
-      </div><?php endif; ?>
+        <div class="nav">
+          <a href="#">
+            <i class="iconfont icon-shezhi"></i>设置</a>
+          <a href="/User/Index/logout">
+            <i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了
+          </a>
+        </div><?php endif; ?>
     </div>
   </div>
 </div>
-
-
 
 		
 	<div class="main layui-clear">
