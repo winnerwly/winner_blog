@@ -12,43 +12,6 @@ class IndexController extends Controller {
 			$this->error("请登录！","/User/Index/login");
 		}
 	}
-
-    // public function index(){
-    //     $this->before();
-    // 	// $this->assign("name",cookie("user_name"));
-    // 	$status = $_GET["status"];
-    // 	$where = "1";
-    // 	if($status==""||$status<0){
-    // 		$status = -1;
-    // 	}else{
-    // 		$where = " question_status = ".$status." ";
-    // 	}
-    	
-    // 	$count = M("question")->where($where)->count();
-    // 	$Page = new page($count,15);
-    // 	$show = $Page->show();
-    // 	$sql = "select q.id,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where ".$where." order by q.question_time desc limit ".$Page->firstRow.",".$Page->listRows;
-    // 	$res = M()->query($sql);
-    // 	/**
-    // 	 * 
-    // 	 * 刚刚
-    // 	 * 几分钟前
-    // 	 * 几个小时前
-    // 	 * 几天前
-    // 	 * 几月前
-    // 	 * 几年前
-    // 	 * time - now 
-    // 	 **/ 
-    // 	$tool = new Date();
-    // 	for($i = 0;$i<count($res);$i++){
-    // 		$res[$i]["question_time"] = $tool->translate($res[$i]["question_time"]);
-    // 	}
-    // 	$this->assign("question",$res);
-    // 	$this->assign("show",$show);
-    	
-    // 	$this->assign("status",$status);
-   	// 	$this->display();
-    // }
     
     public function add(){
     	$this->before();
@@ -86,19 +49,19 @@ class IndexController extends Controller {
 		$res = M()->query($sql);
 		$res = $res[0];
 		$res["question_time"] = date("Y:m:d H:i:s",$res["question_time"]);
-     	$comments = $this->getComment($qid);
-     	$this->assign("comment",$comments);
-     	$this->assign("question",$res);
-     	
-     	if($res["uid"]==session("uid")){
-     		$this->assign("is_author","1");
-     	}
-     	
-     	// 浏览加1
-     	M("question")->where("id = ".$qid)->setInc("question_view");
-     	
-     	$hot = $this->getHot();
-     	$hotComment = $this->getHotComment();
+		$comments = $this->getComment($qid);
+		$this->assign("comment",$comments);
+		$this->assign("question",$res);
+		
+		if($res["uid"]==session("uid")){
+			$this->assign("is_author","1");
+		}
+		
+		// 浏览加1
+		M("question")->where("id = ".$qid)->setInc("question_view");
+		
+		$hot = $this->getHot();
+		$hotComment = $this->getHotComment();
      	
      	$this->assign("hot",$hot);
      	$this->assign("hotComment",$hotComment);

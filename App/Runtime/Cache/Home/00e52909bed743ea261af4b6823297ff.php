@@ -23,11 +23,8 @@
       <a class="nav-this" href="<?php echo U('User/Index/home?u='.session('uid'));?>">
         <i class="iconfont icon-wenda"></i>我的问答
       </a>
-      <a class="nav-this" href="<?php echo U('User/Index/index');?>">
-        <i class="iconfont icon-logo"></i>问答中心
-      </a>
       <a class="nav-this" href="/User/Index/index?p=1">
-        <i class="iconfont icon-ui"></i>个人中心
+        <i class="iconfont icon-ui"></i>发帖管理
       </a>
     </div>
 
@@ -182,13 +179,7 @@
 		
 	<div class="footer">
 	<p>
-		<a href="#">Fly社区</a> 2017 &copy;
-		<a href="#">layui.com</a>
-	</p>
-	<p>
-		<a href="#" target="_blank">产品授权</a>
-		<a href="#" target="_blank">获取Fly社区模版</a>
-		<a href="#" target="_blank">微信公众号</a>
+		这只是一个很简单的底部
 	</p>
 </div>
 
