@@ -1,0 +1,75 @@
+<extend name="./Public/View/base.html" />
+<block name="styles"></block>
+<block name="header">
+	<include file="./Public/View/header.html" />
+</block>
+<block name="main">
+	<div class="fly-home" style="background-image: url();">
+  <img src="{$usermsg.user_image}" alt="用户头像">
+  <h1>
+    {$usermsg.user_name}
+    <i class="iconfont icon-nan"></i> 
+    <!-- <i class="iconfont icon-nv"></i> -->
+    
+    <!-- <span style="color:#c00;">（超级码农）</span>
+    <span style="color:#5FB878;">（活雷锋）</span>
+    <span>（该号已被封）</span> -->
+  </h1>
+  <p class="fly-home-info">
+    <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span>
+    <i class="iconfont icon-shijian"></i><span>{$usermsg.user_regtime} 加入</span>
+    <i class="iconfont icon-chengshi"></i><span>来自杭州</span>
+  </p>
+  <p class="fly-home-sign">（{$usermsg.user_motto}）</p>
+</div>
+<div class="main fly-home-main">
+  <div class="layui-inline fly-home-jie">
+    <div class="fly-panel">
+      <h3 class="fly-panel-title"><b>{$usermsg.user_name}</b> -- 最近的提问</h3>
+      <if condition="$questionList">
+        <ul class="jie-row">
+          <volist id='vo' name='questionList'>
+            <li>
+              <span class="fly-jing">精</span>
+              <a href="/Question/index/detail?q={$vo.qid}" class="jie-title">{$vo.qid}{$vo.question_title}</a>
+              <i>{$vo.question_time}</i>
+              <em>{$vo.question_view}阅/{$vo.question_comment}答</em>
+            </li>
+          </volist>
+        </ul>
+      <else />
+        <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><i style="font-size:14px;">没有发表任何求解</i></div>
+      </if>
+    </div>
+  </div>
+  
+  <div class="layui-inline fly-home-da">
+    <div class="fly-panel">
+      <h3 class="fly-panel-title"><b>{$usermsg.user_name}</b> -- 最近的回答</h3>
+      <if condition="$answerList">
+        <ul class="home-jieda">
+          <volist id='avo' name='answerList'>
+            <li>
+              <p>
+              <span>{$avo.answer_time}</span>
+              在<a href="/Question/index/detail?q={$vo.qid}" target="_blank">{$avo.question_title}</a>中回答：
+              </p>
+              <div class="home-dacontent">
+                {$avo.answer_content}
+                <!-- <pre>
+                </pre> -->
+              </div>
+            </li>
+          </volist>
+        </ul>
+      <else />
+        <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><span>没有回答任何问题</span></div>
+      </if>
+    </div>
+  </div>
+</div>
+</block>
+<block name="footer">
+	<include file="./Public/View/footer.html" />
+</block>
+<block name="scripts"></block>
