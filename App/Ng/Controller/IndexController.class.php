@@ -3,27 +3,31 @@ namespace Ng\Controller;
 use Think\Controller;
 use Org\Util\Date;
 class IndexController extends Controller {
-   //前置操作方法
-   public function before(){
-    $this->assign("name",cookie("user_name"));
-    if(!session("uid")){
-      $this->error("请登录!","/User/Index/login");
-    }
-   }  
-
-  //个人中心
-  public function index(){
-    $this->before();
-    $this->display();
+  // 获取post数据
+  private function getPost(){
+    $tmp = file_get_contents('php://input', true);
+    return json_decode($tmp); 
   }
-
+  
   //用户登录
+  // 用户名 username string require
+  // 密码   pass     string require
+  // 验证码 code     string require
+  // method POST
+
   public function login(){
     if(IS_POST){
       // 获取post提交的数据
-      $obj = json_decode(file_get_contents('php://input', true));  
+      $obj = $this->getPost();  
       $map["user_name"] = $obj->username;
       $map["user_pwd"] = md5($obj->pass);
+      $code = $obj->code;
+      // 验证验证码
+      if (!$this->verifyCheck($code)) {
+        $data['code'] = 201;
+        $data['msg'] = '验证码不正确';
+        $this->ajaxReturn($data);
+      }
       // 验证登陆
       $res = M("user")->where($map)->field("id,user_name,user_image")->find();
       if($res==null){
@@ -45,122 +49,58 @@ class IndexController extends Controller {
       $this->ajaxReturn($data);
     }
   }
-  
-  // 邮箱激活
-  public function activate(){
-    $this->before();
-    $this->display();
-  }
-  // 忘记密码
-  public function forget(){
-    $this->display();
-  }
-  
-  // 主页
-  public function home(){
-    $this->before();
-    $uid = session('uid');
-    if (isset($_GET["u"])) {
-      $uid = $_GET["u"];
-    }
-    // 获取用户信息
-    $sql ="select * from think_user where id=".$uid."";
-    $res = M()->query($sql);
-    // 判断当前用户是否能查询到
-    if (count($res) == 0) {
-      $this->error("你访问的用户不存在",U('Home/Index/index'));
-    }
-    $res[0]["user_regtime"]= date("Y-m-d",$res[0]["user_reg_time"]);
-    // 获取用户提交问题列表
-    $questionSql = "select q.id as qid,q.question_title,q.question_time,q.question_view,q.question_status as s,q.question_comment,q.question_uid as uid ,q.question_type as tid,u.user_name,u.user_image,t.type_name from think_question as q left join think_user as u on q.question_uid = u.id left join think_question_type as t on q.question_type = t.id where u.id=".$uid." order by q.question_time desc";
-    $questionList=M()->query($questionSql);
-    $tool = new Date();
-    for($i = 0;$i<count($questionList);$i++){
-      $questionList[$i]["question_time"] = $tool->translate($questionList[$i]["question_time"]);
-    }
-    // 获取用户发表评论的列表
-    $answerSql="select a.id AS aid, a.answer_content, a.answer_time, a.answer_qid AS qid, q.question_title FROM think_answer AS a LEFT JOIN think_question AS q ON q.id = a.answer_qid WHERE a.answe_uid = ".$uid." ORDER BY a.answer_time DESC";
-    $answerList=M()->query($answerSql);
-    for($i = 0;$i<count($answerList);$i++){
-      $answerList[$i]["answer_time"] = $tool->translate($answerList[$i]["answer_time"]);
-    }
-    $this->assign("usermsg",$res[0]);
-    $this->assign('questionList',$questionList);
-    $this->assign('answerList',$answerList);
-    $this->display();
-  }
-  
-  // 消息
-  public function message(){
-    $this->before();
-    $this->display();
-  }
-  
-  // 注册
+
+  // 用户注册
+  // 用户名   username string requiret
+  // 邮箱     email    string require
+  // 密码     pass     string require
+  // 验证密码 repass   string require
+  // 验证码   code     string require
+  // method POST
+
   public function reg(){
-    if(IS_POST){
-      /**
-       *  email:邮箱
-        username:用户名
-        pass:密码
-        repass:重复密码
-        vercode:验证码
-       * 1. 校验验证码
-       * 1.5密码是否一致
-       * 2. 检查邮箱是否重复
-       * 3. 检查用户名是否重复
-       * 4. 注册成功  ，存 cookie session
-       * **/
-      $data['user_email'] = $_POST["email"]; 
-      $data['user_pwd'] = $_POST["pass"];
-      $data['user_name'] = $_POST["username"];
-      $repass = $_POST["repass"];
-      $code = $_POST["vercode"];
-      // 验证码
-      if(!$this->verifyCheck($code)){
-        $this->error("验证码错误！");
+    if (IS_POST) {
+      $obj = $this->getPost();
+      $map['user_email'] = $obj->email;
+      $map['user_pwd'] = $obj->pass;
+      $map['user_name'] = $obj->username;
+      $repass = $obj->repass;
+      $code = $obj->code;
+      $data['code'] = 201;
+      if (!$this->verifyCheck($code)) {
+        $data['msg'] = '验证码不正确';
+        $this->ajaxReturn($data);
       }
-      //验证密码一致性
-      if($data['user_pwd'] != $repass){
-        $this->error("密码不一致！");
+      if ($map['user_pwd'] != $repass) {
+        $data['msg'] = '两次输入的密码不一致';
+        $this->ajaxReturn($data);
       }
-      // 邮箱验证
-      if(M("user")->where("user_email = '".$data['user_email']."'")->count()>0){
-        $this->error("邮箱已经存在！！");
+      if (M('user')->where("user_name = '".$map['user_name']."'")->count()>0) {
+        $data['msg'] = '你输入的用户名已存在';
+        $this->ajaxReturn($data);
       }
-      
-      // 用户名验证
-      if(M("user")->where("user_name = '".$data['user_name']."'")->count()>0){
-        $this->error("用户名已经存在！！");
-      }
-      
-      // 将获取的数据写入数据库
-      $data["user_reg_time"] = time();
-      $data["user_image"] = "/Public/images/avatar/".rand(0,11).".jpg";
-      $data['user_pwd'] = md5($data['user_pwd']);
-      $uid = M("user")->add($data);
-      
-      if($uid>0){
-        cookie("user_name",$data["user_name"]);
-        cookie("user_image",$data["user_image"]);
-        session("uid",$uid);
-        $this->success("注册成功！！","Index/index");
+      $map['user_reg_time'] = time();
+      $map['user_image'] = "/Public/images/avatar/".rand(0,11).".jpg";
+      $map['user_pwd'] = md5($map['user_pwd']);
+      $uid = M('user')->add($map);
+      if ($uid>0) {
+        $res = M("user")->where($map)->field("id,user_name,user_image")->find();
+        $data['code'] = 200;
+        $data['msg'] = '注册成功';
+        $data['obj'] = $res;
+        $this->ajaxReturn($data);
       }else{
-        $this->error("用户名已经存在！！");
+        $data['msg'] = '你输入的用户名已存在';
+        $this->ajaxReturn($data);
       }
-      
     }else{
-      $this->display();
+      $data['code'] = 401;
+      $data['msg'] = '请用Post提交数据';
+      $this->ajaxReturn($data);
     }
   }
-  
-  // 设置
-  public function set(){
-    $this->before();
-    $this->display();
-  }
-  
   // 验证码
+  // merhod GET
   public function verifyCode(){
     $Verify = new \Think\Verify();
     $Verify->length = 3;
@@ -169,17 +109,28 @@ class IndexController extends Controller {
     $Verify->useNoise = false;
     $Verify->entry();
   }
+
+  public function checkCode(){
+    if (IS_POST) {
+      $obj = $this->getPost();
+      $code = $obj->code;
+      echo ($code);
+      if (!$this->verifyCheck($code)) {
+        $data['code'] = 201;
+        $data['msg'] = '验证码不正确';
+        $this->ajaxReturn($data);
+      }else{
+        $data['msg'] = '验证码正确';
+        $data['code'] = 200;
+        $this->ajaxReturn($data);
+      }
+    }
+  }
+  
   // 验证码的验证
   private function verifyCheck($code){
     $verify = new \Think\Verify();
     return $verify->check($code);
   }
   
-  // 退出
-  public function logout(){
-    cookie("user_name",null);
-    cookie("user_image",null);
-    session("uid",null);
-    $this->success("退出成功！","/User/Index/login");
-  }
 }
