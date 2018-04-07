@@ -107,20 +107,25 @@ class IndexController extends Controller {
     $Verify->useCurve = false;
     $Verify->fontSize = 16;
     $Verify->useNoise = false;
-    $Verify->entry();
+    $Verify->codeSet = '0123456789';
+    $Verify->entry($_GET['time']);
   }
 
   public function checkCode(){
     if (IS_POST) {
       $obj = $this->getPost();
       $code = $obj->code;
-      echo ($code);
-      if (!$this->verifyCheck($code)) {
+      $time = $obj->time;
+      if (!$this->verifyCheck($code, $time)) {
         $data['code'] = 201;
+        $data['info'] = $code;
+        $data['time'] = $time;
         $data['msg'] = '验证码不正确';
         $this->ajaxReturn($data);
       }else{
         $data['msg'] = '验证码正确';
+        $data['info'] = $code;
+        $data['time'] = $time;
         $data['code'] = 200;
         $this->ajaxReturn($data);
       }
@@ -128,9 +133,9 @@ class IndexController extends Controller {
   }
   
   // 验证码的验证
-  private function verifyCheck($code){
+  private function verifyCheck($code,$time){
     $verify = new \Think\Verify();
-    return $verify->check($code);
+    return $verify->check($code,$time);
   }
   
 }
